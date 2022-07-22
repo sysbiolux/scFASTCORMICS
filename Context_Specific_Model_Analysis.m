@@ -1,22 +1,23 @@
+function[Analysis,T]=Context_Specific_Model_Analysis(model_composite,Optimization_global,files_length, path, Cover_range,REI_range, printLevel,T)
 %% Create a list where you see directly in how many clusters each reaction was present
 
-%extract = [path,'\Discretization_Step\Extracting_all_possible_information'];
+extract = [path,'\Discretization_Step\Extracting_all_possible_information'];
 
 Cluster_Numbers = 1:1:files_length; % Indicates the number of clusters
+if printLevel==1
 mkdir ([extract,'\Reactions_Present_in_each_Cluster']);
 mkdir ([extract,'\Reaction_Matrix']);
 mkdir ([extract,'\Gene_Matrix']);
-
+end
 kk = 0;
 
-Table_Unique_Genes_Asso = [];
-Table_Unique_Reactions_Context_Specific_Model = [];
+k=0;
+Analysis=struct();
 
-for c=1:numel(Cover)
-    for p=1:numel(percent)
-        load([extract,'\Context_Specific_Model_Cover_' ,num2str(Cover(c)),'_Percentile_', num2str(percent(p)),'.mat'])
-        load([extract,'\A_value_of_the_context_Specific_Model_Cover_' ,num2str(Cover(c)),'_Percentile_', num2str(percent(p)),'.mat'])
-        
+for c=1:numel(Cover_range)
+    for p=1:numel(REI_range)
+        k=k+1;
+        A=find(Optimization_global(1).A(:,k));
         Reactions_Context_Specific_Model = model_composite.rxns(A);
         Reactions_Context_Specific_Model = cellfun(@(S) S(1:end-2), Reactions_Context_Specific_Model , 'Uniform', 0);
         Reactions_Context_Specific_Model = array2table(Reactions_Context_Specific_Model);
@@ -33,10 +34,11 @@ for c=1:numel(Cover)
             Table_Reactions_in_each_Cluster = table(reactions_names', reactions_count');
             Header_Table_Reactions_in_each_Cluster = {'Reactions' , 'Present_in_so_many_clusters'};
             Table_Reactions_in_each_Cluster.Properties.VariableNames =  Header_Table_Reactions_in_each_Cluster ;
-            
-            name_1 = ['\Reactions_in_each_Cluster_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p))];
+            if printLevel==1
+            name_1 = ['\Reactions_in_each_Cluster_Cover_',num2str(Cover_range(c)),'_Percentile_',num2str(REI_range(p))];
             Table_Reactions_in_each_Cluster_List = [extract,'\Reactions_Present_in_each_Cluster',name_1,'.txt'];
             writetable(Table_Reactions_in_each_Cluster,Table_Reactions_in_each_Cluster_List);
+            end
         end
     
 
@@ -57,7 +59,7 @@ for c=1:numel(Cover)
         unique_Reactions_Context_Specific_Model_matrix = zeros(numel(unique_Reactions_Context_Specific_Model),length(Cluster_Numbers));
         
         for clu=1:numel(Cluster_Numbers)
-            Index_of_Reactions_in_Context_Specific_Model = find(contains(model_composite.rxns(A),strcat('_',num2str(Cluster_Numbers(clu)))));
+            Index_of_Reactions_in_Context_Specific_Model = (contains(model_composite.rxns(A),strcat('_',num2str(Cluster_Numbers(clu)))));
             Index_of_the_reactions_Cluster_in_the_Context = Reactions_Context_Specific_Model_2(Index_of_Reactions_in_Context_Specific_Model);
             unique_Reactions_Context_Specific_Model_matrix(ismember(unique_Reactions_Context_Specific_Model, Index_of_the_reactions_Cluster_in_the_Context),clu)=1;
         end
@@ -79,14 +81,21 @@ for c=1:numel(Cover)
             Reaction_Table_2(ismember(Reaction_Table_2.Ex_Reactions, 1),:)=[];
             
             Reaction_Matrix = Reaction_Table_2(:,1:end-2);
-            
-            name_2 = ['\Reaction_Matrix_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p))];
+            if printLevel==1
+            name_2 = ['\Reaction_Matrix_Cover_',num2str(Cover_range(c)),'_Percentile_',num2str(REI_range(p))];
             Reaction_Mat = [extract,'\Reaction_Matrix',name_2,'.txt'];
             writetable(Reaction_Matrix,Reaction_Mat);
+            end
+             Analysis(k).Reaction_mat=Reaction_Matrix;
+
         else
-            name_2 = ['\Reaction_Matrix_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p))];
+            if printLevel==1
+            name_2 = ['\Reaction_Matrix_Cover_',num2str(Cover_range(c)),'_Percentile_',num2str(REI_range(p))];
             Reaction_Mat = [extract,'\Reaction_Matrix',name_2,'.txt'];
+            
             writetable(Table_test, Reaction_Mat);
+            end
+            Analysis(k).Reaction_mat=Reaction_Matrix;
         end
   
 
@@ -105,18 +114,19 @@ for c=1:numel(Cover)
         Gene_matrix = zeros(numel(Unique_All_Genes_Composite_Model_Pure),length(Cluster_Numbers));
         
         for clu=1:numel(Cluster_Numbers)
-            Index_of_Genes_in_Context_Specific_Model = find(contains(Genes_in_each_Cluster,strcat('_',num2str(Cluster_Numbers(clu)))));
+            Index_of_Genes_in_Context_Specific_Model = (contains(Genes_in_each_Cluster,strcat('_',num2str(Cluster_Numbers(clu)))));
             Name_of_the_gene = All_Genes_Composite_Model_Pure(Index_of_Genes_in_Context_Specific_Model);
             Gene_matrix(ismember(Unique_All_Genes_Composite_Model_Pure, Name_of_the_gene),clu)=1;
         end
         
         Finished_Gene_matrix = array2table(Gene_matrix);
         Gene_Table = [Unique_All_Genes_Composite_Model_Pure,Finished_Gene_matrix];
-        
-        name_3 = ['\Gene_Matrix_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p))];
+        if printLevel==1
+        name_3 = ['\Gene_Matrix_Cover_',num2str(Cover_range(c)),'_Percentile_',num2str(REI_range(p))];
         Gene_Mat = [extract,'\Gene_Matrix',name_3,'.txt'];
         writetable(Gene_Table,Gene_Mat);
-        
+        end
+        Analysis(k).gene_mat=Gene_Table;
   
 
         %% Gene associated to reactions
@@ -126,36 +136,19 @@ for c=1:numel(Cover)
         % First extract the RXN_Gene_Matrix from the context-specific model
         % Extract the unique Gene_Associated to reactions
         
-        Rxn_Gene_Matrix_Context_Specific_Model = Context_Specific_model.rxnGeneMat;
-        Genes_Asso = Context_Specific_model.genes(find(sum(Rxn_Gene_Matrix_Context_Specific_Model,1) ~=0));
-        Genes_Asso = cellfun(@(S) S(1:end-2), Genes_Asso, 'Uniform', 0);
-        Genes_Asso_Unique = unique(Genes_Asso);
+       
         
-        Table_Unique_Genes_Asso(kk,1) = Cover(c);
-        Table_Unique_Genes_Asso(kk,2) = percent(p);
-        Table_Unique_Genes_Asso(kk,3) = numel(Genes_Asso_Unique);
+        
         
 
         %% Reactions in the context-specific model
       
-        Rxns_Context_Specific_Model = Context_Specific_model.rxns;
-        Rxns_Context_Specific_Model = cellfun(@(S) S(1:end-2), Rxns_Context_Specific_Model  , 'Uniform', 0);
-        Unique_Rxns_Context_Specific_Model = unique(Rxns_Context_Specific_Model);
-        
-        Table_Unique_Reactions_Context_Specific_Model(kk,1) = Cover(c);
-        Table_Unique_Reactions_Context_Specific_Model(kk,2) = percent(p);
-        Table_Unique_Reactions_Context_Specific_Model(kk,3) = numel(Unique_Rxns_Context_Specific_Model);
         
     end
 end
 
-Table_Unique_Genes_Asso = array2table(Table_Unique_Genes_Asso);
-Header_Gene_Asso = {'Cover' , 'Percentile' , 'Unique_Gene_Associated'};
-Table_Unique_Genes_Asso.Properties.VariableNames = Header_Gene_Asso;
-writetable(Table_Unique_Genes_Asso, [path,'\Discretization_Step\Table_Unique_Gene_Asso.txt']);
 
-Table_Unique_Reactions_Context_Specific_Model = array2table(Table_Unique_Reactions_Context_Specific_Model);
-Header_Unique_Reactions_Context_Specific_Model  = {'Cover', 'Percentile', 'Unique_Reactions_in_Context_Specific_Model'};
-Table_Unique_Reactions_Context_Specific_Model.Properties.VariableNames = Header_Unique_Reactions_Context_Specific_Model;
-writetable(Table_Unique_Reactions_Context_Specific_Model, [path,'\Discretization_Step\Table_Unique_Reactions_in_Context_Specific_Model.txt']);
+%writetable(Table_Unique_Genes_Asso, [path,'\Discretization_Step\Table_Unique_Gene_Asso.txt']);
 
+
+end
