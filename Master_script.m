@@ -1,4 +1,4 @@
-% Driver script for HPC containing all 20 data sets
+% Driver script for the parameter optimization (20 data sets)
 %starts 22/07 12h49
 clear all
 changeCobraSolver('ibm_cplex')
