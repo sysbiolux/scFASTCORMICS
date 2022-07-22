@@ -107,7 +107,7 @@ end
             A = fastcore_original(C, model_composite, 1e-4);
             A_keep(A,k) = 1 ;
             Tresh(k,1)=Cover_range(c);
-            Tresh(k,2)=Cover_range(p);
+            Tresh(k,2)=REI_range(p);
             C_all= unique(find(C_keep(:,k)));
             
             Core_Reactions_Names_Unique = model_composite.rxns(find(C_all));
@@ -123,6 +123,7 @@ end
  Optimization_global(1).A=A_keep;
  Optimization_global(1).thresh=Tresh;
  Optimization_global(1).C_keep=C_keep;
+ 
  Optimization_global(1).Nb_core=Nb_core;
 
 end
