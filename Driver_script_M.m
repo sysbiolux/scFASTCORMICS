@@ -31,6 +31,11 @@ plot_formula = 1;
 path = [user_path,'\1Results_',set_name];
 mkdir(path);
 files_length = length(scdataset);
+if files_length==0
+'The single-cell data was not found' 
+else
+
+
 
 % Names of the cluster for Jaccard (number of names = number of clusters)
 Headers = {'Reactions'};
@@ -96,5 +101,6 @@ T=struct();
 toc
 TIME=toc
 save(set_name)
+end
 end
 % 
