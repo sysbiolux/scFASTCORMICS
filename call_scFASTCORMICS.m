@@ -37,7 +37,7 @@ end
 scdataset = dir([user_path,'\Datasets\Data_', num2str(ii),'\*.txt']);
 set_name = strcat('Data_',num2str(ii)','_model_orig');
   
-[best]=Driver_script_M(Discretization_Table, set_name, scdataset, biodbnet,user_path, model);
+[best]=Driver_script_M(Discretization_Table, set_name, scdataset, biodbnet,user_path, model, Cover_range,REI_range);
 Best_keep(ii,1)=best.Best_REI_Threshold_Reaction_Formula;
 Best_keep(ii,2)=best.Best_Cover_Threshold_Reaction_Formula;
 TIME(ii)=toc;
