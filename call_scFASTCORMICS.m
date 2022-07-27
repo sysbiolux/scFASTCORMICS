@@ -1,6 +1,13 @@
 % Driver script for the parameter optimization (20 data sets)
-%starts 22/07 12h49
+% This script is an example on how to run scFASTCORMICS 
+
+% INPUTS : A table contained the genes names and the bulk RNA-seq values
+% A consistent model
+% A dictionary between the data IDs and the model IDs
+% The single cell data should be stored in Folder called Dataset 
+
 clear all
+
 changeCobraSolver('ibm_cplex')
 user_path = 'C:\Users\maria.pacheco\Desktop\scFASTCORMICS';
 
@@ -22,7 +29,6 @@ elseif ii==15 || ii==16
     Discretization_Table = readtable([user_path,'\Discretization_Table_PACA.txt']);
 elseif ii== 17
     Discretization_Table = readtable([user_path,'\Discretization_Table_PBMC.txt']);
-
 elseif ii==18 || ii==19
     Discretization_Table = readtable([user_path,'\Discretization_Table_Liver_Cancer.txt']);
 elseif ii>19
