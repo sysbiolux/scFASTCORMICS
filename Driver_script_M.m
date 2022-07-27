@@ -66,10 +66,7 @@ end
 % 
 % 
 % % Perform the parameter tuning
-%Cover_range = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90]/100; % Ex: Cover of 5 = 0.05 , of 20 = 0.2
-%REI_range = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90]; % Ex: Percent of 5 = 5 , of 20 = 20
-Cover_range = [0.0025, 0.005, 0.0075, 0.01, 0.0125, 0.015, 0.02, 0.05, 0.1, 0.5 0.6];
-REI_range = [1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]; % Ex: Percent of 5 = 5 , of 20 = 20
+
 [input_data,Optimization_global]=Percentile_Cover(model_composite,input_data,Cover_range, REI_range,path,scdataset,printLevel);
 % 
 toc
