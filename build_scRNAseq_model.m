@@ -73,7 +73,7 @@ else
     model=input_model;
     %%
     model=removeRxns(model, 'biomass_reaction');
-    model=fixIrr(model);
+    model=fixIrr_rFASTCORMICS(model);
     A=fastcc_fastcore(model, 1e-4);
     model=removeRxns(model,model.rxns(setdiff(1:numel(model.rxns),A)));
     
