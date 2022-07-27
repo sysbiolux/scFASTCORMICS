@@ -1,14 +1,14 @@
+function[c]=Jaccard(Cover_range, REI_range, Analysis, Headers, extract)
 %% Creating Jaccard similarity plot of reaction count between clusters of each threshold condition
 
-mkdir ([extract,'\Jaccard_Similarity']);
 cb_keep = [0.9200, 0.1100, 0.0267, 0.8150];
-for c=1:numel(Cover)
-    for p=1:numel(percent)
-        
-        if isfile([extract,'\Reaction_Matrix\Reaction_Matrix_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p)),'.txt']) == 1
-            Reactions = readtable([extract,'\Reaction_Matrix\Reaction_Matrix_Cover_',num2str(Cover(c)),'_Percentile_',num2str(percent(p)),'.txt']);
-            Reactions.Properties.VariableNames = Headers;
-            Reaction_Matrix = table2array(Reactions(:,2:end));
+k=0
+for c=1:numel(Cover_range)
+    for p=1:numel(REI_range)
+        k=k+1
+        Reactions=Analysis(k).Reaction_mat
+        Reactions.Properties.VariableNames = Headers;
+        Reaction_Matrix = table2array(Reactions(:,2:end));
             
             J = squareform(pdist(Reaction_Matrix','jaccard'));
             if numel(unique(J)) > 1
@@ -54,16 +54,16 @@ for c=1:numel(Cover)
                 fig_gcf = findall(0,'type','figure', 'tag', 'Clustergram');
                 set(findall(figureHandle,'type','text'),'fontSize',16,'fontWeight','bold')
                 set(findall(figureHandle, 'type','axes','tag','HeatMapAxes'),'fontsize',16)
-                saveas(gcf,[extract,'\Jaccard_Similarity\1Jaccard_C_',num2str(Cover(c)),'_P_',num2str(percent(p)),'.png']);
+                saveas(gcf,[extract,'\Jaccard_Similarity\1Jaccard_C_',num2str(Cover_range(c)),'_P_',num2str(REI_range(p)),'.png']);
             end
             J = 1-J;
             rowNames = Headers(2:end);
             colNames = Headers(2:end);
             Jac_table = array2table(J,'RowNames',rowNames,'VariableNames',colNames);
             
-            writetable(Jac_table,[extract,'\Jaccard_Similarity\1Jaccard_Similarity_Index_C_',num2str(Cover(c)),'_P_',num2str(percent(p)),'.txt'], 'WriteRowNames', true);
+            writetable(Jac_table,[extract,'\Jaccard_Similarity\1Jaccard_Similarity_Index_C_',num2str(Cover_range(c)),'_P_',num2str(REI_range(p)),'.txt'], 'WriteRowNames', true);
         end
-    end
+    
 end
 close all force
 %'ColumnLabels', data_values_names,...
