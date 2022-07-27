@@ -1,4 +1,4 @@
-function[best]=Driver_script_M(Discretization_Table, set_name, scdataset,biodbnet, user_path, model)
+function[best]=Driver_script_M(Discretization_Table, set_name, scdataset,biodbnet, user_path, model, Cover_range,REI_range)
 
 %% ScFASTCORMICS Driver script
 
