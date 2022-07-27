@@ -36,7 +36,8 @@ elseif ii>19
 end
 scdataset = dir([user_path,'\Datasets\Data_', num2str(ii),'\*.txt']);
 set_name = strcat('Data_',num2str(ii)','_model_orig');
-  
+Cover_range = [0.0025, 0.005, 0.0075, 0.01, 0.0125, 0.015, 0.02, 0.05, 0.1, 0.5 0.6];
+REI_range = [1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90]; % Ex: Percent of 5 = 5 , of 20 = 20
 [best]=Driver_script_M(Discretization_Table, set_name, scdataset, biodbnet,user_path, model, Cover_range,REI_range);
 Best_keep(ii,1)=best.Best_REI_Threshold_Reaction_Formula;
 Best_keep(ii,2)=best.Best_Cover_Threshold_Reaction_Formula;
