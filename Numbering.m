@@ -4,13 +4,10 @@ if printLevel==1
     mkdir ([path,'\Numbered'])
 end
 files_length = length(scdataset);
-
 input_data=struct;
-for i=1:files_length
-    
+for i=1:files_length    
     %import data
-    data = readtable([scdataset(i).folder,'\', scdataset(i).name]);
-    
+    data = readtable([scdataset(i).folder,'\', scdataset(i).name]);    
     %add 'Gene Numeration' column to the right position, after Gene ID
     gene_numeration = cellstr(convertStringsToChars(strcat(num2str(data.GeneID) ,'_',num2str(i))));
     gene_numeration = strrep(gene_numeration,' ','');

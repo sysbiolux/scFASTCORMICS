@@ -4,7 +4,7 @@ if printLevel==1
     %Creates a folder named Mapped
     mkdir ([path,'\Mapped']);
 end
-    files_length = length(input_data);
+files_length = length(input_data);
 
 for i=1:files_length
     
@@ -19,8 +19,7 @@ for i=1:files_length
     input_data(i).table_final=table_final;
     if printLevel==1
         writetable(table_final, name);
-    end
-    
+    end    
 end
 
 
