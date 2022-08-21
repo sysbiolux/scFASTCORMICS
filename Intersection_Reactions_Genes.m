@@ -62,12 +62,5 @@ T.Table_spec_rxns_present=Table_spec_rxns_present;
 T.Table_spec_rxns_not_present=Table_spec_rxns_not_present;
 T.Table_spec_genes_present=Table_spec_genes_present;
 T.Table_spec_genes_not_present=Table_spec_genes_not_present;
-if printLevel==1
-    
-% writecell(Table_spec_rxns_present,[dis,'\Table_intersect_rxns_present.txt'])
-% writecell(Table_spec_rxns_not_present,[dis,'\Table_intersect_rxns_not_present.txt'])
-% 
-% writecell(Table_spec_genes_present,[dis,'\Table_intersect_genes_present.txt'])
-% writecell(Table_spec_genes_not_present,[dis,'\Table_intersect_genes_not_present.txt'])
- end
 
+end
