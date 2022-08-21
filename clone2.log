@@ -1,0 +1,452 @@
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:17 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 758 rows and 898 columns.
+Aggregator did 2983 substitutions.
+Reduced LP has 9174 rows, 13799 columns, and 44326 nonzeros.
+Presolve time = 0.09 sec. (22.40 ticks)
+Symmetry aggregator did 6406 additional substitutions.
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       1885419.297644
+Iteration:    40    Scaled infeas =        822349.424809
+Iteration:   367    Scaled infeas =        216761.217650
+Iteration:   619    Scaled infeas =         72710.364810
+Iteration:   817    Scaled infeas =         37055.964423
+Iteration:  1012    Scaled infeas =         13465.578469
+Iteration:  1190    Scaled infeas =          5671.860475
+Iteration:  1379    Scaled infeas =          2422.078378
+Iteration:  1546    Scaled infeas =           994.614114
+Iteration:  1704    Scaled infeas =           139.424405
+Switched to devex.
+Iteration:  1852    Objective     =            -0.005300
+Iteration:  2506    Objective     =            -0.050225
+Iteration:  2965    Objective     =            -0.115983
+Iteration:  3078    Objective     =            -0.247320
+Iteration:  3462    Objective     =            -0.295442
+Iteration:  3844    Objective     =            -0.343542
+Iteration:  4216    Objective     =            -0.396067
+Iteration:  4564    Objective     =            -0.466714
+Iteration:  4936    Objective     =            -0.507687
+Iteration:  5278    Objective     =            -0.551787
+Iteration:  5634    Objective     =            -0.587170
+Iteration:  5983    Objective     =            -0.623522
+Iteration:  6311    Objective     =            -0.657252
+Iteration:  6630    Objective     =            -0.697684
+Removing shift (1).
+
+Primal crossover.
+  Primal:  Fixing 23 variables.
+       22 PMoves:  Infeasibility  3.41060513e-13  Objective -7.08000000e-01
+        0 PMoves:  Infeasibility  3.41060513e-13  Objective -7.08000000e-01
+  Primal:  Pushed 2, exchanged 21.
+  Dual:  Fixed no variables.
+Switched to steepest-edge.
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1437 rows and 1855 columns.
+Aggregator did 2125 substitutions.
+Reduced LP has 2622 rows, 6969 columns, and 30224 nonzeros.
+Presolve time = 0.06 sec. (15.68 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2028885.377101
+Iteration:    41    Scaled infeas =        719838.545632
+Iteration:   249    Scaled infeas =        279842.092816
+Iteration:   394    Scaled infeas =        211446.214384
+Iteration:   516    Scaled infeas =        164479.493010
+Iteration:   663    Scaled infeas =        111801.271254
+Iteration:   785    Scaled infeas =         91283.923298
+Iteration:   917    Scaled infeas =         75488.826362
+Iteration:  1056    Scaled infeas =         56905.440909
+Iteration:  1191    Scaled infeas =         38306.556513
+Iteration:  1320    Scaled infeas =         28114.583276
+Iteration:  1474    Scaled infeas =         19625.174905
+Iteration:  1607    Scaled infeas =         13245.132061
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1554 rows and 2063 columns.
+Aggregator did 2021 substitutions.
+Reduced LP has 2307 rows, 6563 columns, and 29214 nonzeros.
+Presolve time = 0.06 sec. (15.26 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       1360795.852420
+Iteration:   354    Scaled infeas =        362423.967697
+Iteration:   516    Scaled infeas =        248120.159498
+Iteration:   666    Scaled infeas =        176920.178686
+Iteration:   813    Scaled infeas =        123704.591960
+Iteration:   961    Scaled infeas =         88101.967159
+Iteration:  1087    Scaled infeas =         69336.513707
+Iteration:  1216    Scaled infeas =         56293.513332
+Iteration:  1344    Scaled infeas =         42435.352373
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1554 rows and 2063 columns.
+Aggregator did 2021 substitutions.
+Reduced LP has 2307 rows, 6563 columns, and 29214 nonzeros.
+Presolve time = 0.05 sec. (15.26 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2208850.103212
+Iteration:   400    Scaled infeas =        278936.424938
+Iteration:   558    Scaled infeas =        205368.673847
+Iteration:   697    Scaled infeas =        149332.018978
+Iteration:   830    Scaled infeas =        126458.691067
+Iteration:   973    Scaled infeas =        106453.131472
+Iteration:  1119    Scaled infeas =         81517.285088
+Iteration:  1250    Scaled infeas =         66199.586324
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2679078.598532
+Iteration:   439    Scaled infeas =        280145.537183
+Iteration:   606    Scaled infeas =        204042.750576
+Iteration:   769    Scaled infeas =        144988.075369
+Iteration:   893    Scaled infeas =        131321.089996
+Iteration:  1016    Scaled infeas =        109402.982372
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       1394370.265198
+Iteration:   340    Scaled infeas =        380582.281513
+Iteration:   500    Scaled infeas =        274795.456516
+Iteration:   643    Scaled infeas =        216175.840570
+Iteration:   765    Scaled infeas =        181848.397981
+Iteration:   880    Scaled infeas =        153354.289097
+Iteration:  1007    Scaled infeas =        125635.989764
+Iteration:  1122    Scaled infeas =        107671.473054
+Iteration:  1258    Scaled infeas =         87431.451136
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       1572462.289087
+Iteration:   360    Scaled infeas =        311415.223762
+Iteration:   526    Scaled infeas =        227932.480495
+Iteration:   696    Scaled infeas =        180187.829541
+Iteration:   831    Scaled infeas =        147754.927831
+Iteration:   974    Scaled infeas =        127009.029720
+Iteration:  1101    Scaled infeas =        110717.063275
+Iteration:  1241    Scaled infeas =         96266.852979
+Iteration:  1361    Scaled infeas =         75898.146392
+Iteration:  1481    Scaled infeas =         63479.393388
+Iteration:  1612    Scaled infeas =         49491.307119
+Iteration:  1764    Scaled infeas =         35583.422156
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2326597.695754
+Iteration:   381    Scaled infeas =        341143.310348
+Iteration:   551    Scaled infeas =        238738.637128
+Iteration:   714    Scaled infeas =        161613.266863
+Iteration:   860    Scaled infeas =        121255.743678
+Iteration:   996    Scaled infeas =        105369.930190
+Iteration:  1142    Scaled infeas =         87509.072642
+Iteration:  1273    Scaled infeas =         69376.106088
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2249222.695754
+Iteration:   379    Scaled infeas =        345613.330204
+Iteration:   531    Scaled infeas =        262789.189647
+Iteration:   695    Scaled infeas =        173094.656841
+Iteration:   836    Scaled infeas =        142005.386770
+Iteration:   985    Scaled infeas =        116888.665319
+Iteration:  1134    Scaled infeas =         97830.434415
+Iteration:  1281    Scaled infeas =         73268.097697
+Iteration:  1411    Scaled infeas =         60224.609454
+Iteration:  1559    Scaled infeas =         46683.535172
+Iteration:  1701    Scaled infeas =         40876.606003
+Iteration:  1827    Scaled infeas =         31043.366940
+Iteration:  1990    Scaled infeas =         13576.050277
+Iteration:  2127    Scaled infeas =          8784.266472
+Removing shift (2).
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2324597.695754
+Iteration:   384    Scaled infeas =        323526.212438
+Iteration:   539    Scaled infeas =        259337.676237
+Iteration:   683    Scaled infeas =        216007.142695
+Iteration:   838    Scaled infeas =        160940.169302
+Iteration:   978    Scaled infeas =        136227.846778
+Iteration:  1102    Scaled infeas =        122596.332280
+Iteration:  1215    Scaled infeas =        110651.362248
+Iteration:  1330    Scaled infeas =         94442.847602
+Iteration:  1456    Scaled infeas =         83879.918091
+Iteration:  1573    Scaled infeas =         70824.773784
+Iteration:  1696    Scaled infeas =         56759.013091
+Iteration:  1813    Scaled infeas =         43985.579714
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2324597.695754
+Iteration:   384    Scaled infeas =        323526.212438
+Iteration:   539    Scaled infeas =        259337.676237
+Iteration:   683    Scaled infeas =        216007.142695
+Iteration:   838    Scaled infeas =        160940.169302
+Iteration:   978    Scaled infeas =        136227.846778
+Iteration:  1102    Scaled infeas =        122596.332280
+Iteration:  1215    Scaled infeas =        110651.362248
+Iteration:  1330    Scaled infeas =         94442.847602
+Iteration:  1449    Scaled infeas =         83680.649350
+Iteration:  1570    Scaled infeas =         65848.318829
+Iteration:  1685    Scaled infeas =         53765.341219
+Iteration:  1820    Scaled infeas =         39562.021583
+Iteration:  1957    Scaled infeas =         24134.973867
+Iteration:  2099    Scaled infeas =         12922.015150
+Iteration:  2226    Scaled infeas =         10180.208588
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2024660.195754
+Iteration:   372    Scaled infeas =        342170.981944
+Iteration:   515    Scaled infeas =        264457.256898
+Iteration:   654    Scaled infeas =        214110.396491
+Iteration:   785    Scaled infeas =        176425.078868
+Iteration:   919    Scaled infeas =        150455.558867
+Iteration:  1048    Scaled infeas =        126621.453265
+Iteration:  1180    Scaled infeas =        107698.705042
+Iteration:  1310    Scaled infeas =         94082.883375
+Iteration:  1442    Scaled infeas =         79946.150803
+Iteration:  1582    Scaled infeas =         60872.788296
+Iteration:  1715    Scaled infeas =         47124.852545
+Iteration:  1833    Scaled infeas =         37193.722648
+Removing shift (3).
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2328347.695754
+Iteration:   407    Scaled infeas =        315128.229101
+Iteration:   575    Scaled infeas =        226556.438103
+Iteration:   707    Scaled infeas =        183605.324520
+Iteration:   850    Scaled infeas =        156005.204906
+Iteration:   980    Scaled infeas =        133800.009619
+Iteration:  1121    Scaled infeas =        102878.342699
+Iteration:  1272    Scaled infeas =         82718.097411
+Iteration:  1399    Scaled infeas =         67755.799333
+Iteration:  1524    Scaled infeas =         48714.176536
+Iteration:  1663    Scaled infeas =         41248.287921
+Iteration:  1798    Scaled infeas =         31208.313543
+Iteration:  1936    Scaled infeas =         24914.317731
+Iteration:  2088    Scaled infeas =         12958.090719
+Removing shift (2).
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2261847.695754
+Iteration:   381    Scaled infeas =        333941.112707
+Iteration:   521    Scaled infeas =        253369.096085
+Iteration:   638    Scaled infeas =        217991.241482
+Iteration:   764    Scaled infeas =        186915.835700
+Iteration:   899    Scaled infeas =        139593.477199
+Iteration:  1022    Scaled infeas =        118966.532743
+Iteration:  1149    Scaled infeas =        101770.307499
+Iteration:  1266    Scaled infeas =         89430.945309
+Iteration:  1377    Scaled infeas =         75770.450209
+Iteration:  1493    Scaled infeas =         66056.537903
+Iteration:  1616    Scaled infeas =         55847.182998
+Iteration:  1730    Scaled infeas =         45347.773366
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.03 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2261035.195754
+Iteration:   400    Scaled infeas =        316931.465252
+Iteration:   558    Scaled infeas =        244721.018755
+Iteration:   717    Scaled infeas =        193307.805752
+Iteration:   849    Scaled infeas =        163661.611377
+Iteration:   982    Scaled infeas =        134477.547721
+Iteration:  1133    Scaled infeas =        109379.878084
+Iteration:  1272    Scaled infeas =         96260.379181
+Iteration:  1413    Scaled infeas =         75879.582505
+Iteration:  1539    Scaled infeas =         61997.419058
+Iteration:  1675    Scaled infeas =         50678.094409
+Iteration:  1810    Scaled infeas =         32206.029299
+Iteration:  1950    Scaled infeas =         20749.875163
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.05 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       2112451.525197
+Iteration:   453    Scaled infeas =        272214.839378
+Iteration:   620    Scaled infeas =        211286.247018
+Iteration:   768    Scaled infeas =        157744.308876
+Iteration:   905    Scaled infeas =        132508.886195
+Iteration:  1024    Scaled infeas =        111574.685981
+Iteration:  1162    Scaled infeas =         92931.673897
+Iteration:  1306    Scaled infeas =         77776.966912
+Iteration:  1446    Scaled infeas =         64204.611310
+Iteration:  1568    Scaled infeas =         48538.110058
+Iteration:  1701    Scaled infeas =         40889.861392
+Iteration:  1842    Scaled infeas =         34500.891759
+Iteration:  1997    Scaled infeas =         19053.314116
+Iteration:  2131    Scaled infeas =          8435.489007
+Iteration:  2248    Scaled infeas =          6182.467124
+Iteration:  2381    Scaled infeas =          4850.474186
+Iteration:  2502    Scaled infeas =          3518.513066
+Removing shift (2).
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_2 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1579 rows and 2088 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2258 rows, 6514 columns, and 29098 nonzeros.
+Presolve time = 0.06 sec. (15.18 ticks)
+
+Iteration log . . .
+Iteration:     1    Scaled infeas =       1970201.525197
+Iteration:   401    Scaled infeas =        299720.499912
+Iteration:   530    Scaled infeas =        224494.926694
+Iteration:   654    Scaled infeas =        182395.043856
+Iteration:   776    Scaled infeas =        145320.867489
+Iteration:   897    Scaled infeas =        119516.643714
+Iteration:  1017    Scaled infeas =        105065.056426
+Iteration:  1149    Scaled infeas =         93399.371111
+Iteration:  1274    Scaled infeas =         76874.445281
+Iteration:  1388    Scaled infeas =         64675.555256
+Iteration:  1516    Scaled infeas =         53484.932677
+Iteration:  1648    Scaled infeas =         45078.178028
+Iteration:  1778    Scaled infeas =         33149.262337
+Iteration:  1905    Scaled infeas =         21185.927350
+
+Dual simplex solved model.
+

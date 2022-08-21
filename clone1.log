@@ -1,0 +1,920 @@
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:17 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 758 rows and 926 columns.
+Aggregator did 2985 substitutions.
+Reduced LP has 9172 rows, 13797 columns, and 44324 nonzeros.
+Presolve time = 0.13 sec. (35.69 ticks)
+Symmetry aggregator did 6406 additional substitutions.
+Tried aggregator 0 times.
+Reduced presolve eliminated 3 rows and 0 columns.
+Reduced LP has 6199 rows, 10361 columns, and 36151 nonzeros.
+Presolve time = 0.00 sec. (4.11 ticks)
+Parallel mode: using up to 6 threads for barrier.
+
+***NOTE: Found 4 dense columns.
+
+Number of nonzeros in lower triangle of A*A' = 41936
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (5.90 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 6203
+  Integer space required    = 28868
+  Total non-zeros in factor = 113917
+  Total FP ops to factor    = 6166039
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -9.6075023e+05  -8.1435218e+07  1.53e+06  1.14e+06  4.51e+04  1.00e+00
+   1  -7.8438514e+05  -6.2751514e+07  1.29e+06  9.67e+05  3.48e+04  2.70e-03
+   2  -5.7104741e+05  -4.0005388e+07  9.61e+05  7.20e+05  2.22e+04  1.51e-03
+   3  -3.8712364e+05  -3.3980976e+07  6.65e+05  4.98e+05  1.89e+04  1.47e-03
+   4  -2.9129494e+05  -2.0886413e+07  5.02e+05  3.76e+05  1.16e+04  1.72e-03
+   5  -1.5137096e+05  -7.5313265e+06  2.58e+05  1.93e+05  4.18e+03  3.74e-03
+   6  -4.7941664e+04  -2.6209715e+06  7.72e+04  5.79e+04  1.45e+03  9.20e-03
+   7  -1.1810343e+04  -1.4675622e+06  1.88e+04  1.41e+04  8.13e+02  1.48e-02
+   8  -3.8462331e+03  -6.4416033e+05  6.16e+03  4.62e+03  3.57e+02  3.17e-02
+   9  -8.0292782e+02  -2.4308399e+05  1.27e+03  9.49e+02  1.35e+02  8.24e-02
+  10  -1.3268144e+02  -4.4829722e+04  2.09e+02  1.57e+02  2.48e+01  4.36e-01
+  11  -1.5886768e+01  -4.2488440e+03  2.45e+01  1.83e+01  2.35e+00  4.60e+00
+  12  -1.1934693e+00  -2.3987881e+02  1.27e+00  9.52e-01  1.33e-01  8.47e+01
+  13  -4.5474957e-01  -1.8573672e+01  8.21e-02  6.15e-02  1.01e-02  1.43e+03
+  14  -4.6786085e-01  -3.4500510e+00  4.19e-03  3.14e-03  1.66e-03  8.67e+03
+  15  -6.1573971e-01  -1.1126597e+00  5.94e-04  4.45e-04  2.79e-04  4.98e+04
+  16  -7.0158257e-01  -7.3441220e-01  5.11e-05  3.83e-05  1.71e-05  7.98e+05
+  17  -7.0767890e-01  -7.0932302e-01  2.56e-06  1.92e-06  8.58e-07  1.59e+07
+  18  -7.0798394e-01  -7.0806625e-01  1.30e-07  9.61e-08  4.30e-08  3.18e+08
+  19  -7.0799920e-01  -7.0800332e-01  1.00e-08  5.05e-09  2.15e-09  6.35e+09
+  20  -7.0799996e-01  -7.0800017e-01  5.94e-09  8.09e-10  1.11e-10  1.27e+11
+  21  -7.0800000e-01  -7.0800001e-01  5.89e-09  6.61e-10  1.98e-10  2.43e+12
+  22  -7.0800000e-01  -7.0800000e-01  5.61e-09  4.89e-10  1.68e-09  3.90e+13
+Barrier time = 0.77 sec. (111.08 ticks)
+
+Total time on 6 threads = 0.92 sec. (243.97 ticks)
+Barrier time = 0.80 sec. (113.31 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:18 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4804 variables.
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 2 variables.
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1439 rows and 1914 columns.
+Aggregator did 2126 substitutions.
+Reduced LP has 2619 rows, 6968 columns, and 30206 nonzeros.
+Presolve time = 0.08 sec. (27.69 ticks)
+Parallel mode: using up to 6 threads for barrier.
+
+***NOTE: Found 2 dense columns.
+
+Number of nonzeros in lower triangle of A*A' = 24516
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (6.77 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2621
+  Integer space required    = 15907
+  Total non-zeros in factor = 83432
+  Total FP ops to factor    = 7204448
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -1.7535000e+05  -2.5820441e+07  3.43e+06  5.20e+05  1.81e+03  1.00e+00
+   1  -1.4935120e+05  -1.6690478e+07  2.83e+06  4.30e+05  1.17e+03  3.89e-03
+   2  -8.2257066e+04  -7.2647802e+06  1.44e+06  2.19e+05  5.09e+02  3.80e-03
+   3  -4.7996778e+04  -4.6020756e+06  8.36e+05  1.27e+05  3.22e+02  4.97e-03
+   4  -1.6839777e+04  -2.6229224e+06  2.91e+05  4.41e+04  1.84e+02  8.24e-03
+   5  -4.4830701e+03  -9.0741234e+05  7.76e+04  1.18e+04  6.36e+01  2.24e-02
+   6  -1.4648347e+03  -3.3242396e+05  2.57e+04  3.90e+03  2.33e+01  5.70e-02
+   7  -4.2047940e+02  -1.6882223e+05  8.47e+03  1.29e+03  1.18e+01  9.78e-02
+   8  -7.1740518e+01  -7.0022350e+04  1.42e+03  2.15e+02  4.91e+00  2.20e-01
+   9  -1.3921723e+01  -6.0729241e+03  2.74e+02  4.15e+01  4.26e-01  2.53e+00
+  10  -7.2010104e-01  -4.3936452e+02  1.38e+01  2.10e+00  3.08e-02  3.51e+01
+Barrier time = 0.25 sec. (38.67 ticks)
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1556 rows and 2075 columns.
+Aggregator did 2021 substitutions.
+Reduced LP has 2305 rows, 6563 columns, and 29199 nonzeros.
+Presolve time = 0.08 sec. (26.98 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24658
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.10 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2305
+  Integer space required    = 15258
+  Total non-zeros in factor = 82160
+  Total FP ops to factor    = 7024642
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -4.7047000e+04  -1.7001927e+07  6.13e+06  4.77e+06  6.60e+02  1.00e+00
+   1  -3.3990553e+04  -6.0149429e+06  4.25e+06  3.31e+06  2.33e+02  2.65e-03
+   2  -1.5281799e+04  -1.8579307e+06  1.83e+06  1.42e+06  7.21e+01  6.95e-03
+   3  -6.8603878e+03  -9.4532888e+05  7.97e+05  6.20e+05  3.67e+01  1.37e-02
+   4  -4.0937424e+03  -5.1331177e+05  4.70e+05  3.66e+05  1.99e+01  2.44e-02
+   5  -1.9957621e+03  -1.4700250e+05  2.25e+05  1.75e+05  5.70e+00  8.25e-02
+Barrier time = 0.17 sec. (22.64 ticks)
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:19 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1556 rows and 2075 columns.
+Aggregator did 2021 substitutions.
+Reduced LP has 2305 rows, 6563 columns, and 29199 nonzeros.
+Presolve time = 0.06 sec. (26.98 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24658
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.10 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2305
+  Integer space required    = 15258
+  Total non-zeros in factor = 82160
+  Total FP ops to factor    = 7024642
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -4.7047000e+04  -1.7001927e+07  6.13e+06  4.77e+06  6.60e+02  1.00e+00
+   1  -3.4017740e+04  -6.0064346e+06  4.26e+06  3.31e+06  2.33e+02  2.65e-03
+   2  -1.5299428e+04  -1.8557047e+06  1.83e+06  1.42e+06  7.20e+01  6.95e-03
+   3  -6.8903267e+03  -9.4294640e+05  7.98e+05  6.21e+05  3.66e+01  1.37e-02
+   4  -4.0989499e+03  -5.1242903e+05  4.70e+05  3.65e+05  1.99e+01  2.45e-02
+   5  -1.9980788e+03  -1.5361096e+05  2.25e+05  1.75e+05  5.95e+00  7.92e-02
+Barrier time = 0.17 sec. (22.42 ticks)
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.08 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   0.0000000e+00  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.2924863e+02  -5.5457327e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -7.2945144e+02  -1.3802046e+06  2.25e+06  2.04e+06  4.60e+01  7.62e-03
+   3  -1.0014059e+03  -6.5844300e+05  8.65e+05  7.86e+05  2.19e+01  1.67e-02
+   4  -1.0036879e+03  -3.6749887e+05  4.84e+05  4.40e+05  1.22e+01  2.99e-02
+ Barrier aborted.
+Barrier time = 0.09 sec. (20.00 ticks)
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.06 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   0.0000000e+00  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1   5.2339157e+01  -5.5400108e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -5.3345901e+01  -1.3783076e+06  2.26e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -3.4708792e+02  -6.5115184e+05  8.73e+05  7.93e+05  2.17e+01  1.68e-02
+   4  -5.5086347e+02  -3.6381087e+05  4.92e+05  4.47e+05  1.21e+01  3.01e-02
+   5  -8.6483753e+02  -1.7112349e+05  2.50e+05  2.27e+05  5.67e+00  6.50e-02
+   6  -9.8980353e+02  -7.6665770e+04  1.16e+05  1.05e+05  2.52e+00  1.50e-01
+   7  -1.0003407e+03  -3.3998239e+04  2.62e+04  2.38e+04  1.10e+00  3.63e-01
+   8  -9.9934104e+02  -1.6729969e+04  2.35e+03  2.13e+03  5.24e-01  7.83e-01
+   9  -9.9980662e+02  -3.6663121e+03  4.76e+01  4.32e+01  8.89e-02  4.65e+00
+  10  -9.9999969e+02  -1.0017181e+03  4.76e-03  4.32e-03  5.73e-05  7.27e+03
+  11  -1.0000000e+03  -1.0000003e+03  4.91e-07  4.45e-07  1.07e-08  3.97e+07
+  12  -1.0000000e+03  -1.0000000e+03  4.60e-09  5.29e-10  1.22e-12  3.56e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.69e-09  1.40e-09  8.26e-15  2.57e+15
+Barrier time = 0.11 sec. (38.76 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixed no variables.
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4539 variables.
+  Primal:  Fixing 4539 variables.
+.00000000e+00  Objective -1.00000000e+03
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4254 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4022 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3951 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+     3618 PMoves:  Infeasibility  5.11590770e-13  Objective -1.00000000e+03
+     3156 PMoves:  Infeasibility  2.27373675e-13  Objective -1.00000000e+03
+     3509 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3222 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2897 PMoves:  Infeasibility  1.70530257e-13  Objective -1.00000000e+03
+     2949 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2518 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2205 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2285 PMoves:  Infeasibility  8.17124146e-13  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:20 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.06 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   0.0000000e+00  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.1423067e+02  -5.5438380e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.5949025e+02  -1.3754188e+06  2.27e+06  2.06e+06  4.58e+01  7.65e-03
+   3  -4.9329911e+02  -6.4975441e+05  8.72e+05  7.92e+05  2.16e+01  1.69e-02
+   4  -9.0247648e+02  -3.6308849e+05  4.92e+05  4.47e+05  1.21e+01  3.02e-02
+   5  -9.7140631e+02  -1.1505149e+05  2.47e+05  2.25e+05  3.80e+00  9.59e-02
+   6  -9.9238244e+02  -3.1974754e+04  1.32e+05  1.20e+05  1.03e+00  3.67e-01
+   7  -1.0048289e+03  -1.6271010e+04  3.13e+04  2.84e+04  5.09e-01  8.39e-01
+   8  -1.0002230e+03  -8.4010590e+03  3.84e+03  3.49e+03  2.47e-01  1.79e+00
+   9  -9.9994962e+02  -2.3680962e+03  1.60e+02  1.45e+02  4.56e-02  9.67e+00
+  10  -9.9999995e+02  -1.0024305e+03  1.60e-02  1.45e-02  8.10e-05  5.45e+03
+  11  -1.0000000e+03  -1.0000004e+03  1.59e-06  1.45e-06  1.45e-08  3.00e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.20e-09  5.43e-10  2.78e-12  2.51e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.39e-09  9.50e-10  1.67e-14  2.50e+15
+Barrier time = 0.11 sec. (39.30 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 1 variable.
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 0.
+     4255 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4538 variables.
+     4537 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3863 PMoves:  Infeasibility  2.31921149e-11  Objective -1.00000000e+03
+     3569 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3135 PMoves:  Infeasibility  1.93267624e-12  Objective -1.00000000e+03
+     3420 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2888 PMoves:  Infeasibility  1.70530257e-13  Objective -1.00000000e+03
+     3147 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2872 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2569 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+     2476 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2286 PMoves:  Infeasibility  3.83693077e-12  Objective -1.00000000e+03
+     2211 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     1929 PMoves:  Infeasibility  8.69704309e-12  Objective -1.00000000e+03
+     1613 PMoves:  Infeasibility  1.13686838e-13  Objective -1.00000000e+03
+     1357 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     1623 PMoves:  Infeasibility  1.47792889e-12  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.09 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.0377688e+01  -5.5440938e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.4870522e+02  -1.3815783e+06  2.26e+06  2.06e+06  4.60e+01  7.60e-03
+   3  -4.9009353e+02  -6.5382304e+05  8.70e+05  7.90e+05  2.18e+01  1.68e-02
+   4  -8.9553391e+02  -3.6541814e+05  4.79e+05  4.35e+05  1.22e+01  3.01e-02
+   5  -9.6165992e+02  -1.1074768e+05  2.46e+05  2.24e+05  3.66e+00  9.99e-02
+   6  -9.8234726e+02  -3.1666203e+04  1.33e+05  1.21e+05  1.02e+00  3.70e-01
+   7  -9.9999930e+02  -1.5856278e+04  2.27e+04  2.06e+04  4.95e-01  8.79e-01
+   8  -9.9966677e+02  -7.7855438e+03  3.40e+03  3.09e+03  2.26e-01  1.95e+00
+   9  -9.9995584e+02  -1.7422641e+03  1.22e+02  1.11e+02  2.47e-02  1.77e+01
+  10  -9.9999998e+02  -1.0014804e+03  1.22e-02  1.11e-02  4.93e-05  8.89e+03
+  11  -1.0000000e+03  -1.0000003e+03  1.22e-06  1.11e-06  9.62e-09  4.53e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.58e-09  4.48e-10  1.16e-12  3.81e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.68e-09  2.99e-10  3.71e-15  3.80e+15
+Barrier time = 0.13 sec. (39.30 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4539 variables.
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 1 variable.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 0.
+     4257 PMoves:  Infeasibility  0     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3870 PMoves:  Infeasibility  9.46442924e-12  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.08 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.7906333e+02  -5.5401184e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.7818418e+02  -1.3778476e+06  2.27e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -3.1272820e+02  -6.5159305e+05  8.71e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -3.5793972e+02  -3.6454862e+05  4.97e+05  4.52e+05  1.21e+01  3.00e-02
+   5  -6.6743776e+02  -1.7156071e+05  2.54e+05  2.30e+05  5.70e+00  6.46e-02
+   6  -1.0011781e+03  -8.1441424e+04  9.93e+04  9.02e+04  2.68e+00  1.44e-01
+   7  -9.8725542e+02  -3.3110284e+04  1.96e+04  1.78e+04  1.07e+00  3.80e-01
+   8  -9.9639708e+02  -1.5699817e+04  2.02e+03  1.83e+03  4.90e-01  8.46e-01
+   9  -9.9973013e+02  -2.1249531e+03  3.33e+01  3.03e+01  3.75e-02  1.12e+01
+  10  -9.9999824e+02  -1.0311550e+03  1.82e-01  1.65e-01  1.04e-03  4.03e+02
+  11  -9.9999998e+02  -1.0000682e+03  1.82e-05  1.65e-05  2.27e-06  1.84e+05
+  12  -1.0000000e+03  -1.0000000e+03  5.60e-09  1.41e-09  7.10e-10  5.96e+08
+  13  -1.0000000e+03  -1.0000000e+03  4.41e-09  4.15e-10  1.59e-13  4.59e+12
+Barrier time = 0.13 sec. (39.13 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 3 variables.
+        2 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+
+Primal c  Dual:  Pushed 2, exchanged 1.
+ variables.
+     4535 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4536 variables.
+     4535 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4254 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4035 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3623 PMoves:  Infeasibility  4.83169060e-13  Objective -1.00000000e+03
+     3450 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3163 PMoves:  Infeasibility  5.40012479e-13  Objective -1.00000000e+03
+     3147 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2896 PMoves:  Infeasibility  3.12638804e-13  Objective -1.00000000e+03
+     2860 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.08 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1   6.2943672e+01  -5.5427296e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -1.9068659e+02  -1.3779657e+06  2.26e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -3.4367756e+02  -6.5120484e+05  8.71e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -4.3717573e+02  -3.6367052e+05  4.92e+05  4.47e+05  1.21e+01  3.01e-02
+   5  -8.1028100e+02  -1.5688140e+05  2.51e+05  2.28e+05  5.20e+00  7.05e-02
+   6  -9.2635225e+02  -7.2943042e+04  1.14e+05  1.03e+05  2.40e+00  1.59e-01
+   7  -9.9424725e+02  -2.9878591e+04  1.87e+04  1.70e+04  9.63e-01  4.27e-01
+   8  -9.9814632e+02  -1.3862613e+04  2.04e+03  1.85e+03  4.29e-01  9.77e-01
+   9  -9.9988648e+02  -1.9875364e+03  3.45e+01  3.13e+01  3.29e-02  1.28e+01
+  10  -9.9999996e+02  -1.0003077e+03  3.45e-03  3.13e-03  1.03e-05  4.15e+04
+  11  -1.0000000e+03  -1.0000000e+03  3.45e-07  3.13e-07  1.36e-09  3.17e+08
+  12  -1.0000000e+03  -1.0000000e+03  5.84e-09  9.51e-10  1.60e-13  2.72e+12
+  13  -1.0000000e+03  -1.0000000e+03  5.68e-09  3.47e-10  2.48e-15  1.30e+16
+Barrier time = 0.13 sec. (39.30 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4539 variables.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 1 variable.
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 0.
+     4262 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4539 variables.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3966 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4022 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3631 PMoves:  Infeasibility  1.52908797e-11  Objective -1.00000000e+03
+     3173 PMoves:  Infeasibility  2.27373675e-13  Objective -1.00000000e+03
+     3584 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:21 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.09 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1   5.0547599e+01  -5.5414289e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.4908696e+02  -1.3790271e+06  2.26e+06  2.06e+06  4.60e+01  7.61e-03
+   3  -4.3445953e+02  -6.5230622e+05  8.71e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -5.5381729e+02  -3.6497615e+05  4.93e+05  4.48e+05  1.21e+01  3.00e-02
+   5  -8.6900301e+02  -1.1430296e+05  2.51e+05  2.28e+05  3.78e+00  9.63e-02
+   6  -9.7842369e+02  -4.5599906e+04  1.41e+05  1.28e+05  1.48e+00  2.46e-01
+   7  -9.9716488e+02  -2.0147416e+04  2.31e+04  2.10e+04  6.37e-01  6.47e-01
+   8  -9.9922525e+02  -9.8484880e+03  2.28e+03  2.08e+03  2.94e-01  1.44e+00
+   9  -9.9994198e+02  -1.7329430e+03  4.41e+01  4.01e+01  2.44e-02  1.75e+01
+  10  -9.9999998e+02  -1.0002897e+03  4.41e-03  4.00e-03  9.64e-06  4.44e+04
+  11  -1.0000000e+03  -1.0000000e+03  4.41e-07  4.00e-07  1.51e-09  2.85e+08
+  12  -1.0000000e+03  -1.0000000e+03  5.77e-09  6.35e-10  1.53e-13  2.86e+12
+  13  -1.0000000e+03  -1.0000000e+03  5.84e-09  4.64e-10  2.78e-16  2.41e+16
+Barrier time = 0.13 sec. (39.26 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4539 variables.
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 1 variable.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 0.
+  Primal:  Fixing 4539 variables.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4256 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3960 PMoves:  Infeasibility  1.13686838e-13  Objective -1.00000000e+03
+     3681 PMoves:  Infeasibility  2.84217094e-13  Objective -1.00000000e+03
+     3506 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3258 PMoves:  Infeasibility  2.50111043e-12  Objective -1.00000000e+03
+     3213 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3019 PMoves:  Infeasibility  1.93267624e-12  Objective -1.00000000e+03
+     2947 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2753 PMoves:  Infeasibility  1.30739863e-12  Objective -1.00000000e+03
+     2476 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.08 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.5005763e+02  -5.5410011e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.8850851e+02  -1.3787815e+06  2.26e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -5.4032701e+02  -6.5275118e+05  8.71e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -7.0037239e+02  -3.6609137e+05  4.94e+05  4.48e+05  1.22e+01  2.99e-02
+   5  -9.8999250e+02  -1.1318786e+05  2.51e+05  2.28e+05  3.74e+00  9.73e-02
+   6  -9.9042955e+02  -3.2184928e+04  1.42e+05  1.29e+05  1.04e+00  3.53e-01
+   7  -1.0009540e+03  -1.6153641e+04  2.54e+04  2.31e+04  5.05e-01  8.34e-01
+   8  -9.9982625e+02  -8.1131534e+03  3.10e+03  2.81e+03  2.37e-01  1.83e+00
+   9  -9.9996308e+02  -1.8818815e+03  9.53e+01  8.66e+01  2.94e-02  1.48e+01
+  10  -9.9999998e+02  -1.0009870e+03  9.53e-03  8.65e-03  3.29e-05  1.32e+04
+  11  -1.0000000e+03  -1.0000002e+03  9.53e-07  8.66e-07  6.14e-09  7.05e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.57e-09  3.31e-10  7.43e-13  5.92e+11
+  13  -1.0000000e+03  -1.0000000e+03  6.37e-09  3.02e-10  1.02e-15  5.92e+15
+Barrier time = 0.14 sec. (39.28 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4539 variables.
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 1 variable.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 0.
+  Primal:  Fixing 4539 variables.
+     4538 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4211 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3926 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4065 PMoves:  Infeasibility  2.84217094e-14  Objective -1.00000000e+03
+     3660 PMoves:  Infeasibility  2.84217094e-13  Objective -1.00000000e+03
+     3203 PMoves:  Infeasibility  2.10320650e-12  Objective -1.00000000e+03
+     3498 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2946 PMoves:  Infeasibility  1.22213351e-12  Objective -1.00000000e+03
+     3200 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2915 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2668 PMoves:  Infeasibility  2.84217094e-13  Objective -1.00000000e+03
+     2479 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.08 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1   4.9932159e+01  -5.5428900e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -3.2122039e+02  -1.3783076e+06  2.26e+06  2.06e+06  4.59e+01  7.62e-03
+   3  -7.0642451e+02  -6.5155804e+05  8.69e+05  7.90e+05  2.17e+01  1.68e-02
+   4  -8.5908711e+02  -3.6419275e+05  4.90e+05  4.45e+05  1.21e+01  3.02e-02
+   5  -9.3700193e+02  -1.0899407e+05  2.48e+05  2.25e+05  3.60e+00  1.02e-01
+   6  -9.7343542e+02  -3.1201470e+04  1.30e+05  1.18e+05  1.01e+00  3.77e-01
+   7  -9.9953764e+02  -1.5589438e+04  2.28e+04  2.07e+04  4.86e-01  8.93e-01
+   8  -9.9947075e+02  -7.6808724e+03  3.40e+03  3.09e+03  2.23e-01  1.98e+00
+   9  -9.9992858e+02  -1.7251587e+03  1.12e+02  1.02e+02  2.42e-02  1.81e+01
+  10  -9.9999997e+02  -1.0012142e+03  1.12e-02  1.02e-02  4.05e-05  1.08e+04
+  11  -1.0000000e+03  -1.0000002e+03  1.12e-06  1.02e-06  7.74e-09  5.63e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.25e-09  3.28e-10  9.29e-13  4.74e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.77e-09  6.91e-10  8.27e-16  4.74e+15
+Barrier time = 0.13 sec. (39.30 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 2 variables.
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+
+Primal c        0 DMoves:  Infeasibility  0.00000000e+     4537 PMoves:  Infeasibilit  Dual:  Pushed 2, exchanged 0.
+0000000e+03
+  Primal:  Fixing 4538 variables.
+     4537 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4257 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3875 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4083 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3565 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3512 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3156 PMoves:  Infeasibility  1.40971679e-11  Objective -1.00000000e+03
+     3248 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2928 PMoves:  Infeasibility  1.98951966e-13  Objective -1.00000000e+03
+     2980 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2547 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2642 PMoves:  Infeasibility  1.98951966e-13  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:22 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.06 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.5737662e+02  -5.5423460e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -2.0764703e+02  -1.3778814e+06  2.26e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -2.4522238e+02  -6.5228521e+05  8.71e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -2.4025391e+02  -3.6451371e+05  4.93e+05  4.47e+05  1.21e+01  3.00e-02
+   5  -3.8989845e+02  -1.6913718e+05  2.50e+05  2.27e+05  5.62e+00  6.55e-02
+   6  -9.5230656e+02  -8.0003937e+04  1.89e+05  1.72e+05  2.61e+00  1.35e-01
+   7  -1.0027871e+03  -2.3600707e+04  7.42e+04  6.74e+04  7.46e-01  5.07e-01
+   8  -9.9833494e+02  -1.3429272e+04  1.61e+04  1.46e+04  4.11e-01  9.97e-01
+   9  -9.9932590e+02  -6.2349164e+03  3.33e+03  3.02e+03  1.73e-01  2.39e+00
+  10  -9.9994745e+02  -1.3539405e+03  9.05e+01  8.22e+01  1.17e-02  3.58e+01
+  11  -9.9999998e+02  -1.0018343e+03  9.04e-03  8.21e-03  6.06e-05  6.92e+03
+  12  -1.0000000e+03  -1.0000002e+03  1.52e-05  1.38e-05  7.69e-09  5.55e+07
+  13  -1.0000000e+03  -1.0000000e+03  6.69e-09  1.35e-09  7.80e-13  5.58e+11
+  14  -1.0000000e+03  -1.0000000e+03  5.83e-09  4.25e-10  1.49e-13  5.58e+15
+Barrier time = 0.14 sec. (41.33 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4519 variables.
+     4518 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 3 variables.
+        2 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4225 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 2, exchanged 1.
+  Primal:  Fixing 4519 variables.
+     4518 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3847 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3508 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4012 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.06 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.02 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0  -1.3152610e+02  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -1.0935821e+02  -5.5432991e+06  5.15e+06  4.68e+06  1.85e+02  2.39e-03
+   2  -1.9988862e+02  -1.3775011e+06  2.26e+06  2.06e+06  4.59e+01  7.61e-03
+   3  -2.5550071e+02  -6.5180529e+05  8.70e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -2.8264414e+02  -3.6442248e+05  4.93e+05  4.48e+05  1.21e+01  3.00e-02
+   5  -5.1399411e+02  -1.7888490e+05  2.50e+05  2.27e+05  5.95e+00  6.21e-02
+   6  -9.5765860e+02  -7.9721146e+04  1.64e+05  1.49e+05  2.62e+00  1.39e-01
+   7  -9.8868609e+02  -2.6383644e+04  5.75e+04  5.23e+04  8.43e-01  4.55e-01
+   8  -9.9874148e+02  -1.5610090e+04  1.29e+04  1.17e+04  4.85e-01  8.38e-01
+   9  -9.9867586e+02  -6.7211508e+03  2.20e+03  1.99e+03  1.90e-01  2.17e+00
+  10  -9.9994515e+02  -1.2461563e+03  2.22e+01  2.02e+01  8.18e-03  5.10e+01
+  11  -9.9999997e+02  -1.0001836e+03  2.22e-03  2.02e-03  6.10e-06  6.88e+04
+  12  -1.0000000e+03  -1.0000000e+03  2.23e-07  2.02e-07  7.99e-10  5.36e+08
+  13  -1.0000000e+03  -1.0000000e+03  5.42e-09  3.19e-10  8.12e-14  5.40e+12
+Barrier time = 0.11 sec. (39.11 ticks)
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4518 variables.
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 4 variables.
+     4517 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 3, exchanged 1.
+     4235 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4518 variables.
+     4517 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3879 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4025 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3526 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+     3406 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3108 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+     2831 PMoves:  Infeasibility  8.52651283e-14  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.06 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   0.0000000e+00  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -4.5488450e+01  -5.5412935e+06  5.15e+06  4.67e+06  1.85e+02  2.39e-03
+   2  -3.5479436e+02  -1.3778008e+06  2.26e+06  2.06e+06  4.59e+01  7.62e-03
+   3  -5.6228390e+02  -6.5183528e+05  8.70e+05  7.91e+05  2.17e+01  1.68e-02
+   4  -7.8590105e+02  -3.6430154e+05  4.88e+05  4.43e+05  1.21e+01  3.01e-02
+   5  -9.6716023e+02  -1.1243764e+05  2.47e+05  2.24e+05  3.71e+00  9.82e-02
+   6  -9.9271955e+02  -3.9940400e+04  1.32e+05  1.20e+05  1.30e+00  2.89e-01
+   7  -1.0037650e+03  -1.9352744e+04  2.82e+04  2.57e+04  6.11e-01  6.86e-01
+   8  -9.9986407e+02  -9.6450353e+03  2.84e+03  2.58e+03  2.88e-01  1.51e+00
+   9  -9.9990557e+02  -2.5335014e+03  7.31e+01  6.64e+01  5.11e-02  8.51e+00
+  10  -9.9999988e+02  -1.0007134e+03  7.30e-03  6.63e-03  2.38e-05  1.83e+04
+  11  -1.0000000e+03  -1.0000001e+03  7.31e-07  6.64e-07  4.38e-09  9.90e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.81e-09  3.37e-10  4.51e-13  9.81e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.17e-09  7.80e-10  3.95e-15  9.51e+15
+Barrier time = 0.13 sec. (39.30 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 3 variables.
+        2 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+
+Primal c  Dual:  Pushed 1, exchanged 2.
+ variables.
+     4532 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4533 variables.
+     4532 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4236 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3899 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4010 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3636 PMoves:  Infeasibility  2.27373675e-12  Objective -1.00000000e+03
+     3424 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3168 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3183 PMoves:  Infeasibility  1.13686838e-13  Objective -1.00000000e+03
+     2860 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2914 PMoves:  Infeasibility  1.75930381e-11  Objective -1.00000000e+03
+     2448 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     2619 PMoves:  Infeasibility  1.13686838e-13  Objective -1.00000000e+03
+     2185 PMoves:  Infeasibility  1.70530257e-13  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1581 rows and 2093 columns.
+Aggregator did 1998 substitutions.
+Reduced LP has 2256 rows, 6514 columns, and 29083 nonzeros.
+Presolve time = 0.09 sec. (26.88 ticks)
+Parallel mode: using up to 6 threads for barrier.
+Number of nonzeros in lower triangle of A*A' = 24372
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.03 sec. (7.07 ticks)
+Summary statistics for Cholesky factor:
+  Threads                   = 6
+  Rows in Factor            = 2256
+  Integer space required    = 15131
+  Total non-zeros in factor = 81188
+  Total FP ops to factor    = 6897672
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   0.0000000e+00  -1.6981427e+07  7.00e+06  6.36e+06  5.66e+02  1.00e+00
+   1  -7.4791629e+01  -5.5338613e+06  5.15e+06  4.68e+06  1.84e+02  2.39e-03
+   2  -4.1893719e+02  -1.3768982e+06  2.26e+06  2.05e+06  4.59e+01  7.63e-03
+   3  -6.0846114e+02  -6.5332458e+05  8.71e+05  7.91e+05  2.18e+01  1.68e-02
+   4  -7.9849112e+02  -3.6520658e+05  4.87e+05  4.42e+05  1.21e+01  3.01e-02
+   5  -9.5604410e+02  -1.1206351e+05  2.47e+05  2.24e+05  3.70e+00  9.85e-02
+   6  -9.9003111e+02  -3.9271446e+04  1.33e+05  1.20e+05  1.27e+00  2.94e-01
+   7  -1.0037577e+03  -1.9069750e+04  2.89e+04  2.63e+04  6.02e-01  6.96e-01
+   8  -9.9988556e+02  -9.5463599e+03  2.90e+03  2.63e+03  2.85e-01  1.53e+00
+   9  -9.9990566e+02  -2.5532754e+03  7.68e+01  6.98e+01  5.17e-02  8.41e+00
+  10  -9.9999987e+02  -1.0007602e+03  7.68e-03  6.97e-03  2.53e-05  1.72e+04
+  11  -1.0000000e+03  -1.0000001e+03  7.68e-07  6.97e-07  4.70e-09  9.22e+07
+  12  -1.0000000e+03  -1.0000000e+03  5.27e-09  7.30e-10  5.53e-13  8.85e+11
+  13  -1.0000000e+03  -1.0000000e+03  5.80e-09  6.09e-10  8.27e-16  8.86e+15
+Barrier time = 0.13 sec. (39.28 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Dual crossover.
+  Dual:  Fixing 3 variables.
+        2 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Dual:  Pushed 1, exchanged 2.
+
+Log for 'CPLEX' Clone_1 (V12.10.0.0) Sun Aug 21 16:27:23 2022
+
+
+Primal crossover.
+  Primal:  Fixing 4533 variables.
+     4532 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+  Primal:  Fixing 4533 variables.
+     4532 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4217 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     4081 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3815 PMoves:  Infeasibility  5.68434189e-14  Objective -1.00000000e+03
+     3490 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3420 PMoves:  Infeasibility  3.06954462e-12  Objective -1.00000000e+03
+     3244 PMoves:  Infeasibility  0.00000000e+00  Objective -1.00000000e+03
+     3075 PMoves:  Infeasibility  2.18847163e-12  Objective -1.00000000e+03
+
+Dual simplex solved model.
+
