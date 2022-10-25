@@ -51,6 +51,6 @@ else
     coverage=0.005;
     REI=1;
 end
-[best]=scFASTCORMICS(Discretization_Table, set_name, scdataset, biodbnet,user_path, generic_input_reconstruction, coverage,REI, run_optimization, printLevel);
+[best, Final_model, ExpandedInputModel]=scFASTCORMICS(Discretization_Table, set_name, scdataset, biodbnet,user_path, generic_input_reconstruction, coverage,REI, run_optimization, printLevel);
 
 
