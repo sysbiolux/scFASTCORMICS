@@ -1,4 +1,4 @@
-function[best,  Final_model]=scFASTCORMICS(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel)
+function[best,  Final_model,Expanded_input_model ]=scFASTCORMICS(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel)
 % (c) Maria Pires Pacheco 2022 et al -University of Luxembourg
 
 best=[];
