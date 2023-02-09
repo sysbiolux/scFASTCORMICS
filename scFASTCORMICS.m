@@ -1,4 +1,4 @@
-function[best,  Final_model,Expanded_input_model ]=scFASTCORMICS(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel)
+function[best,  multicell_model,Expanded_input_model ]=scFASTCORMICS(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel)
 % (c) Maria Pires Pacheco 2022 et al -University of Luxembourg
 
 best=[];
@@ -51,7 +51,7 @@ else
     end
     
    [~,Final_model]=Build_Multi_cell_population_model(Expanded_input_model,input_data, best.Best_Cover_Threshold_Reaction_Formula,best.Best_REI_Threshold_Reaction_Formula,path,scdataset,printLevel);
-    
+    multicell_model = removeRxns(ExpandedInputModel,ExpandedInputModel.rxns(setdiff(1:numel(ExpandedInputModel.rxns),find(Final_model.A))));
 end
 save(set_name)
 
