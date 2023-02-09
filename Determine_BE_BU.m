@@ -26,7 +26,7 @@ Table_Reaction_Never_Expressed = zeros(numel(REI_range)*numel(coverage_range),3)
 
 kk = 0;
 [mapping] = map_expression_2_data_rFASTCORMICS(Expanded_Input_model_tmp, Values_Discretization_Table, dico_biodbnet, Rownames_Bulk_data);
-Rxns_Not_Present = Expanded_Input_model.rxns(sum(mapping,2) <= (size(mapping,2)*(-0.9)));
+Rxns_Not_Present = Expanded_Input_model.rxns(sum(mapping,2) < (size(mapping,2)*(-0.9)));
 Rxns_Present = Expanded_Input_model.rxns(sum(mapping,2) > (size(mapping,2) * 0.9));
 
 Rxns_Not_Present = cellfun(@(S) S(1:end-2), Rxns_Not_Present, 'Uniform', 0);
