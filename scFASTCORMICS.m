@@ -32,7 +32,6 @@ else
     if run_opti==1
         [~,Optimization_global]=Parameter_optimisation(Expanded_input_model,input_data,Cover_range, REI_range,path,scdataset,printLevel);
         T=struct();
-        save poo
         % Extracting additional information from the expanded input model
         [~, T]=Multi_cell_population_model_Analysis(Expanded_input_model,Optimization_global,files_length, path, Cover_range, REI_range, printLevel, T);
         %  Identify reactions that are supported or not supported by the
