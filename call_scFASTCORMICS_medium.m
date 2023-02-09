@@ -23,11 +23,11 @@ printLevel=1;
 
 %Path
 changeCobraSolver('ibm_cplex')
-user_path='C:\Users\maria.pacheco\Documents\GitHub\scFASTCORMICS';
+user_path='';
 
 % Data_1
 biodbnet = readtable([user_path,'\dico_biodbnet.txt']); % The dictionary should map the model genes id to the data ids
-load('C:\Users\maria.pacheco\Documents\GitHub\fastbox\models\Recon3.mat')
+load('model.mat')
 
 % uncomment if you get an error concerning eval
 % feature astheightlimit 2000
@@ -37,7 +37,7 @@ TIME=zeros(20,1);
 
 
 tic
-load('C:\Users\maria.pacheco\Documents\GitHub\rFASTCORMICS\rFASTCORMICS for RNA-seq data\exampleData\medium_example.mat')
+load('medium_example.mat')
 model=removeRxns(model,'biomass_maintenance' );
 model=removeRxns(model,'biomass_maintenance_noTrTr' );
 
