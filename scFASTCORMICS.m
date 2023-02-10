@@ -51,7 +51,7 @@ else
     end
     
    [~,Final_model]=Build_Multi_cell_population_model(Expanded_input_model,input_data, best.Best_Cover_Threshold_Reaction_Formula,best.Best_REI_Threshold_Reaction_Formula,path,scdataset,printLevel);
-    multicell_model = removeRxns(ExpandedInputModel,ExpandedInputModel.rxns(setdiff(1:numel(ExpandedInputModel.rxns),find(Final_model.A))));
+    multicell_model = removeRxns(Expanded_input_model,Expanded_input_model.rxns(setdiff(1:numel(Expanded_input_model.rxns),find(Final_model.A))));
 end
 save(set_name)
 
