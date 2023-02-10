@@ -49,7 +49,6 @@ A=fastcc_4_rfastcormics(model, 1e-4,1);
 model=removeRxns(model, model.rxns(setdiff(1:numel(model.rxns),A)));
 
    
-[model]=simplyRev_fastbox(model);
 generic_input_reconstruction=model;
 
 Discretization_Table = readtable([user_path,'\Discretization_Table_CRC_tumor.txt']);
