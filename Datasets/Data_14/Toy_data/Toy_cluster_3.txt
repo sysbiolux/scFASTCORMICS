@@ -1,9 +1,0 @@
-Name	Ensembl Gene ID	Gene ID	Sample1	Sample2	Sample3	mean	median	St_Devi	False_True_Expression
-chr1	G1	8001	0	0	0	0	0	0	0
-chr2	G2	8002	85	80	88	0	0	0	0
-chr3	G3	8003	1	2	1	0	0	0	0
-chr4	G4	8004	12	8	9	0	0	0	0
-chr5	G5	8005	8	8	10	0	0	0	0
-chr6	G6	8006	8	5	5	0	0	0	0
-chr7	G7	8007	7	8	9	0	0	0	0
-chr8	G8	8008	2	0	2	0	0	0	0
