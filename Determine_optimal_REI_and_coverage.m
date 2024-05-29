@@ -78,7 +78,7 @@ if plot_formula == 1
             
             subplot(3,3,f);
             imagesc(Table_Formula_2);
-            caxis([0 1])
+            clim([0 1])
             title(['Heatmap of dataset, ', Reaction_Titles{f}])
             ylabel('Coverage') %Cover
             xlabel('REI') %Percentage
@@ -104,7 +104,7 @@ if plot_formula == 1
             
             subplot(3,3,f)
             imagesc(Table_Formula_2);
-            caxis([0 max(Reaction_Formula{f})])
+            clim([0 max(Reaction_Formula{f})])
             ylabel('Coverage') %Cover
             xlabel('REI') %Percentage
             title(['Heatmap of dataset, ', Reaction_Titles{f}])

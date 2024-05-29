@@ -4,7 +4,9 @@ if printLevel==1
     %Creates a folder named Mapped
     mkdir ([path,'\Mapped']);
 end
+
 files_length = length(input_data);
+
 
 for i=1:files_length
     

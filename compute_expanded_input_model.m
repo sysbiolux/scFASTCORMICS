@@ -65,7 +65,7 @@ for i=1:number_of_cluster
         ind=ind2+1;
         ind3=ind4+1;
         ind5=ind6+1;
-        ind7=ind8+1;        
+        ind7=ind8+1;
     end
     ind2=ind+size(internal_S_matrix_for_1_cluster,1)-1;
     ind4= ind3+ size(internal_S_matrix_for_1_cluster,2)-1;
@@ -78,9 +78,11 @@ for i=1:number_of_cluster
     internal_rxns_array(ind3:ind4,1)=strcat(internal_rxns,'_', num2str(i));
     mets(ind: ind2)=strcat(internal_mets,'_', num2str(i));
     intercluster_trans_array(ind7:ind8,1)=(strcat(intercluster_transport,'_', num2str(i)));
+   % do first metabolites
     for ii=1:numel(fields)
         if size( model.(fields{ii}),1)==size( model.mets,1)&& size( model.(fields{ii}),2)~=size( model.rxns,1)
             temp=model.(fields{ii});
+           
             expanded_input_model.(fields{ii})= [expanded_input_model.(fields{ii});temp(internal_mets_index)];
         elseif size( model.(fields{ii}),1)==size( model.rxns,1) && size( model.(fields{ii}),1)~=size( model.mets,1)
             temp=model.(fields{ii});
@@ -103,24 +105,24 @@ for i=1:number_of_cluster
                             temp4=eval(temp3);
                             temp{counter1}=strrep(temp2,temp3, num2str(temp4));
                         else
-                            while ~isempty(plus_pos)                                
+                            while ~isempty(plus_pos)
                                 u22= plus_pos(1)-bracket1_pos;
                                 u22=bracket1_pos(u22== min(u22(u22>0)));
                                 u33= bracket2_pos-plus_pos(1);
-                                u33=bracket2_pos(u33== min(u33(u33>0)));                                
+                                u33=bracket2_pos(u33== min(u33(u33>0)));
                                 temp3=temp2(u22+1: u33-1);
                                 temp4=eval(temp3);
                                 temp3a=strcat('(',temp3,')');
-                                temp4a=strcat('(',num2str(temp4),')');                                
+                                temp4a=strcat('(',num2str(temp4),')');
                                 temp2=strrep(temp2,temp3a,temp4a);
                                 plus_pos=strfind(temp2,'+');
                                 bracket1_pos=strfind(temp2,'(');
                                 bracket2_pos=strfind(temp2,')');
                             end
-                            temp{counter1}=temp2;                            
+                            temp{counter1}=temp2;
                         end
                     end
-                end                
+                end
             else
             end
             if iscell(temp)
@@ -147,7 +149,7 @@ end
 
 varname = regexp(exmets, '\[(.*?)\]', 'match', 'once');
 expanded_input_model.mets=[mets';sort(strrep(exmets,varname,'[u]'));sort(strrep(exmets,varname,'[e]'))];
-a=strrep(exmets,varname,'[u]');
+umets=strrep(exmets,varname,'[u]');
 S=[internal_S_matrix,intercluster_trans_Smat];
 
 S2=[sparse(size(umets,1),size(internal_S_matrix,2)),intercluster_trans_Smat2];
@@ -173,16 +175,19 @@ for i=1:numel(exmets)
     dico_EX(i,2)=r;
 end
 expanded_input_model.rxns=[internal_rxns_array(:,1);intercluster_trans_array(:,1);trans;Ex];
+save xxx
+
 for ii=1:numel(fields)
     if size( model.(fields{ii}),1)==size( model.rxns,1) && size( model.(fields{ii}),1)~=size( model.mets,1)
         if iscell(expanded_input_model.(fields{ii}))
+            
             rul=[internal_rxns_array(:,ii+1);intercluster_trans_array(:,ii+1);cell(numel(trans),1);cell(numel(Ex),1)];
             rul(cellfun('isempty',rul))=cellstr('');
             expanded_input_model.(fields{ii})=rul;
-            exmissing=model.(fields{ii})(ismember(model.rxns, dico_EX(:,2)));
-            expanded_input_model.(fields{ii})(ismember(expanded_input_model.rxns, Ex))=exmissing;
+            
         else
             if strcmp(fields{ii}, 'lb')
+                
                 %% lower bounds set -1000 by defaut for trans and Ex
                 expanded_input_model.(fields{ii})=[internal_rxns_array_n(:,ii+1);intercluster_trans_array_n(:,ii+1);ones(numel(trans),1)*-1000; ones(numel(Ex),1)*-1000];
             else
@@ -191,17 +196,86 @@ for ii=1:numel(fields)
         end
     else
         if iscell(expanded_input_model.(fields{ii}))
-            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});cell(numel(a),1);cell(numel(a),1)];
+            [~,index]=ismember(exmets,model.mets)
+            temp2=cell(numel(exmets),1);
+            temp=model.(fields{ii});
+            temp2(index>0)=temp(index(index>0))
+            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});temp2;temp2];
         else
-            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});ones(numel(a),1)*mean(expanded_input_model.(fields{ii}));ones(numel(a),1)*mean(expanded_input_model.(fields{ii}))];
+            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}));ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}))];
         end
     end
 end
+'Hell0';
+%% correct reversibility
+lb=zeros(numel(exmets),1);
+ub=zeros(numel(exmets),1);
+grRules=cell(numel(exmets),1);
+R_ex=cell(numel(exmets),1);
+for i=1:numel(exmets)
+    [~,r]=find(model.S(ismember(model.mets,exmets(i)),:));
+    r=intersect(model.rxns(r),exRxns);
+    R_ex(i,1)=r;
+    
+    sign=model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r));
+    if full(sign) >0
+        % then flip
+        model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r))=-sign;
+        tmp=model.ub(ismember(model.rxns,r));
+        model.ub(ismember(model.rxns,r))=-model.lb(ismember(model.rxns,r));
+        model.lb(ismember(model.rxns,r))=-tmp;
+    end
+end
+[~,index]=ismember(R_ex,model.rxns);
+lb(index>0)=model.lb(index(index>0));
+ub(index>0)=model.ub(index(index>0));
+
+
+Table_bound=table(R_ex,lb, ub, exmets,strcat('Ex_',exmets));
+[~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
+expanded_input_model.lb(index>0)=Table_bound.lb(index(index>0));
+expanded_input_model.ub(index>0)=Table_bound.ub(index(index>0));
+
+%%
 expanded_input_model.rev= sparse(numel(expanded_input_model.rxns),1);
 expanded_input_model.rev(expanded_input_model.lb<0)=1;
 
 expanded_input_model = buildRxnGeneMat(expanded_input_model);
 expanded_input_model = creategrRulesField(expanded_input_model);
-end
+expanded_input_model=fixIrr_rFASTCORMICS(expanded_input_model);
 
+%% correct rules for exchanges
+[~,index]=ismember(R_ex,model.rxns);
+grRules(index>0)=model.grRules(index(index>0));
+Table_bound=[Table_bound,table(grRules)];
+rules_keep=cell(size(Table_bound,1),1);
+for counter2=1:size(Table_bound,1)
+    if ~cellfun('isempty',table2array(Table_bound(counter2,6)))
+        
+        
+        for counter=1:number_of_cluster
+            if counter==1
+                rules=strcat(table2array(Table_bound(counter2,6)),'_', num2str(counter));
+            else
+                tmp= strcat(table2array(Table_bound(counter2,6)),'_',num2str(counter));
+                rules=strcat(string(rules), ' or ','$ ', string(tmp));
+            end
+        end
+        rules=strrep(rules,'$',' ');
+        rules_keep(counter2,1)=cellstr(rules);
+    end
+    [~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
+    
+
+    expanded_input_model.grRules(index>0)=rules_keep(index(index>0),1);
+end
+    expanded_input_model.grRules(cellfun('isempty',expanded_input_model.grRules))=cellstr('');
+for i=1:numel(expanded_input_model.grRules)
+expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'or',' or ');
+     expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'and',' and ');
+end
+    expanded_input_model = generateRules(expanded_input_model);
+
+
+end
 

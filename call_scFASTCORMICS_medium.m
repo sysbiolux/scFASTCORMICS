@@ -41,10 +41,10 @@ load('medium_example.mat')
 model=removeRxns(model,'biomass_maintenance' );
 model=removeRxns(model,'biomass_maintenance_noTrTr' );
 
-biomass_rxn='biomass_reaction'
-function_keep='biomass_reaction'
-not_medium=''
-[model] = constrain_model_rFASTCORMICS(model, medium_example, not_medium, biomass_rxn, function_keep)
+biomass_rxn='biomass_reaction';
+function_keep='biomass_reaction';
+not_medium='';
+[model] = constrain_model_rFASTCORMICS(model, medium_example, not_medium, biomass_rxn, function_keep);
 A=fastcc_4_rfastcormics(model, 1e-4,1);
 model=removeRxns(model, model.rxns(setdiff(1:numel(model.rxns),A)));
 
@@ -64,6 +64,6 @@ else
     REI=1;
 end
 
-[best,  Final_model, ExpandedInputModel]=scFASTCORMICS(Discretization_Table, set_name, scdataset, biodbnet,user_path, generic_input_reconstruction, coverage,REI, run_optimization, printLevel);
+[best, multi_cell_population_model, ExpandedInputModel, A]=scFASTCORMICS(Discretization_Table, set_name, scdataset, biodbnet,user_path, generic_input_reconstruction, coverage,REI, run_optimization, function_keep);
 
 

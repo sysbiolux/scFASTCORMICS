@@ -1,4 +1,4 @@
-function[best,  multicell_model,Expanded_input_model, A]=scFASTCORMICS(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel, function_keep)
+function[best,  multicell_model,Expanded_input_model, A]=scFASTCORMICSHUGE(Discretization_Table, set_name, scdataset,biodbnet, user_path, generic_input_reconstruction, Cover_range,REI_range, run_opti, printLevel, function_keep)
 % (c) Maria Pires Pacheco 2022 et al -University of Luxembourg
 generic_input_reconstruction=simplifyDuplicatedGenesFastbox(generic_input_reconstruction,1);
 best=[];
@@ -33,7 +33,7 @@ else
     [input_data]=Numbering(scdataset,path,printLevel);
     
     % Mapping the cluster genes to the composite model
-    [input_data]=MappingHUGE(input_data, Expanded_input_model, path, printLevel,scdataset);
+    [input_data]=Mapping(input_data, Expanded_input_model, path, printLevel,scdataset);
     
     % Perform the parameter tuning
     if run_opti==1
@@ -61,5 +61,6 @@ else
     multicell_model = removeRxns(Expanded_input_model,Expanded_input_model.rxns(setdiff(1:numel(Expanded_input_model.rxns),find(Final_model.A))));
     A=Final_model.A;
 end
+
 end
 %
