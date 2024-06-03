@@ -89,7 +89,7 @@ end
 % Takes a long time to run >7h
 
 mkdir ([dis,'\Extracting_all_possible_information']);
-C_add = find(contains(model_composite.rxns,'biomassreaction'));
+C_add = find(contains(model_composite.rxns,strrep(function_keep,'_','')));
 trex_ind = find(ismember(string(model_composite.subSystems),'Transport, extracellular'));
 drug_ind = find(ismember(string(model_composite.subSystems),'Drug metabolism'));
 k=0;

@@ -18,7 +18,7 @@ else
     
     % create an expanded input model that contains a set of internal
     % reactions, metabolites and associated genes per cluster in the dataset
-    [Expanded_input_model] = call_build_expanded_input_model(generic_input_reconstruction,number_of_cluster,run_toy_model);
+    [Expanded_input_model] = call_build_expanded_input_model(generic_input_reconstruction,number_of_cluster,run_toy_model, funcion_keep);
     biomass_rxn=function_keep.biomass;
     not_medium=function_keep.not_medium;
     medium=function_keep.medium;
