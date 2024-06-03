@@ -1,4 +1,4 @@
-function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel)
+function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel,function_keep)
 % %% Discretization of the data : Cover and REI
 %
 mkdir ([path,'\Discretization_Step'])
