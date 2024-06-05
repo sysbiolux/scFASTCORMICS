@@ -1,27 +1,20 @@
-function[input_data]=Numbering(scdataset, path,printLevel )
-%% Loading\Importing the data
+function[input_data]=Numbering(scdataset, path,printLevel, cell_index )
+ 
+ 
+%% Loading/Importing the data
 if printLevel==1
-    mkdir ([path,'\Numbered'])
+    mkdir ([path,'/Numbered'])
 end
 files_length = length(scdataset);
 
 input_data=struct();
+
+    
 for i=1:files_length    
     %import data
-    data = readtable([scdataset(i).folder,'\', scdataset(i).name]);  
+    data = readtable([scdataset(i).folder,'/', scdataset(i).name]);  
     
-    fid=fopen([scdataset(i).folder,'\', scdataset(i).name]); 
-     varNames = fgetl(fid);
- varNames=split(varNames,' ');
- varNames=strrep(varNames,"",'');
- varNames=regexp(varNames,'[^""]*','match','once');
- varNames=strrep(varNames,'-','_');
-
- varNames=[{'Num'};string(varNames)];
-
- fclose(fid);
- data.Properties.VariableNames=varNames;
- data=removevars(data,'Num');
+   
     %add 'Gene Numeration' column to the right position, after Gene ID
     gene_numeration = cellstr(convertStringsToChars(strcat(num2str(data.GeneID) ,'_',num2str(i))));
     gene_numeration = strrep(gene_numeration,' ','');
@@ -29,12 +22,16 @@ for i=1:files_length
     %build the table
     table_data = [data(:,2),gene_numeration, data(:,4:end)];
     table_data.Properties.VariableNames(2) = {'Gene_Numeration'};
-    if size(table_data,2)>1003
-    table_data=table_data(:,1:1003)
+    if nargin==4
+      table_data=table_data(:,cell_index)
+
+    else
+
     end
+    
     %save the table
     if printLevel==1
-        name = [path,'\Numbered\Numbered_', scdataset(i).name];
+        name = [path,'/Numbered/Numbered_', scdataset(i).name];
         writetable(table_data,name);
     end
     input_data(i).input_data=table_data;

@@ -1,4 +1,4 @@
-function[composite_model, fields]=create_empty_expanded_input_model(model, fields_to_keep)
+function[composite_model, fields]=create_empty_composite_model(model, fields_to_keep)
 %(c)Maria Pires Pacheco
 composite_model=struct();
 % retrieve the fields from the input model

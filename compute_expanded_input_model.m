@@ -175,7 +175,6 @@ for i=1:numel(exmets)
     dico_EX(i,2)=r;
 end
 expanded_input_model.rxns=[internal_rxns_array(:,1);intercluster_trans_array(:,1);trans;Ex];
-save xxx
 
 for ii=1:numel(fields)
     if size( model.(fields{ii}),1)==size( model.rxns,1) && size( model.(fields{ii}),1)~=size( model.mets,1)
@@ -196,10 +195,10 @@ for ii=1:numel(fields)
         end
     else
         if iscell(expanded_input_model.(fields{ii}))
-            [~,index]=ismember(exmets,model.mets)
+            [~,index]=ismember(exmets,model.mets);
             temp2=cell(numel(exmets),1);
             temp=model.(fields{ii});
-            temp2(index>0)=temp(index(index>0))
+            temp2(index>0)=temp(index(index>0));
             expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});temp2;temp2];
         else
             expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}));ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}))];

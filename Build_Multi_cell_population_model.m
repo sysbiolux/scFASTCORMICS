@@ -1,7 +1,8 @@
-function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel)
+function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel,function_keep)
 % %% Discretization of the data : Cover and REI
 %
-mkdir ([path,'\Discretization_Step'])
+
+mkdir ([path,'/Discretization_Step'])
 files_length= numel(input_data);
 % performing mapping takes ~1h30
 % loading in the mapped_cluster_data
@@ -28,7 +29,7 @@ for i=1:files_length
     end
     input_data(i).mapping=mapping;
     if printLevel==1
-        name = [path,'\Discretization_Step\mapping',num2str(i)];
+        name = [path,'/Discretization_Step/mapping',num2str(i)];
         save(name,'mapping');
     end
 end
@@ -36,15 +37,15 @@ end
 
 % takes about 5min  --  before taking the mapping loop out, the code would
 % have ran for more than a day
-dis = [path,'\Discretization_Step'];
+dis = [path,'/Discretization_Step'];
 
-mkdir ([dis,'\Unique_Core_Genes']);
-mkdir ([dis,'\Unique_Core_Reactions']);
-mkdir ([dis,'\Core_Genes']);
-mkdir ([dis,'\Core_Reactions']);
-mkdir ([dis,'\Core_Genes_Names_Model']);
-mkdir ([dis,'\Core_Reactions_Each_Cluster']);
-mkdir ([dis,'\Core_Reactions_Names_Model']);
+mkdir ([dis,'/Unique_Core_Genes']);
+mkdir ([dis,'/Unique_Core_Reactions']);
+mkdir ([dis,'/Core_Genes']);
+mkdir ([dis,'/Core_Reactions']);
+mkdir ([dis,'/Core_Genes_Names_Model']);
+mkdir ([dis,'/Core_Reactions_Each_Cluster']);
+mkdir ([dis,'/Core_Reactions_Names_Model']);
 Optimization_global=struct();
 k=0;
 C_keep=zeros(numel(model_composite.rxns),(numel(Cover_range)*numel(REI_range)));
@@ -74,7 +75,7 @@ for c=1:numel(Cover_range)
             
             
             
-            C = sum(mapping>0,2) >= (size(mapping,2)*Cover_range(c));
+            C = sum(mapping>0,2) >= (size(mapping,2)*Cover_range(c))*0.9;
             C_keep(C,k)=1; % C = index of the core reactions
             
             % Extracting the number of core genes of each threshold
@@ -88,8 +89,8 @@ end
 %% Generating a context-specific model with the help of FASTCORE
 % Takes a long time to run >7h
 
-mkdir ([dis,'\Extracting_all_possible_information']);
-C_add = find(contains(model_composite.rxns,strrep(function_keep,'_','')));
+mkdir ([dis,'/Extracting_all_possible_information']);
+C_add = find(contains(model_composite.rxns,strrep(function_keep.obj,'_','')));
 trex_ind = find(ismember(string(model_composite.subSystems),'Transport, extracellular'));
 drug_ind = find(ismember(string(model_composite.subSystems),'Drug metabolism'));
 k=0;
