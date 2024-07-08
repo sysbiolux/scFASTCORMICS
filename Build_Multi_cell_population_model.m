@@ -7,14 +7,20 @@ files_length= numel(input_data);
 % performing mapping takes ~1h30
 % loading in the mapped_cluster_data
 Nb_core=zeros(numel(Cover_range)*numel(REI_range));
+disp('... mapping ...')
 for i=1:files_length
+    i
     % First step : Load each data + add the correct header
     table_mapped = input_data(i).table_final;
     gene_id = table_mapped.Gene_Numeration;
     % Second step : Discretization starting with percentile followed by cover
     [~,ia,ib] = intersect(model_composite.genes,gene_id); % I = Intersect , ia = Index of model_genes and ib = index of gene annotation
     data = zeros(numel(model_composite.genes),(size(table_mapped,2)-1));
-    data(ia,:) = table2array(table_mapped(ib,2:end));
+try %old input data format
+    data(ia,:) = table2array(table_mapped(ib,2:end)); %%% isnumeric(table2array(table_mapped(ib,2:end)))??
+catch %new input data format
+    data(ia,:) = str2double(table_mapped{ib,2:end});
+end
     mapping = zeros(numel(model_composite.rxns), size(data,2));
     [r,~]=find(sum(model_composite.rxnGeneMat,2)==1);
     for ii=1:numel(r)
@@ -22,12 +28,15 @@ for i=1:files_length
         mapping(r(ii),:)=data(g,:);
     end
     match=find(~strcmp(model_composite.rules,'')& sum(model_composite.rxnGeneMat,2)>1);
+
     for j=1:size(data,2)
         for ki=1:numel(model_composite.rxns(match))
             mapping(match(ki),j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model_composite.rules(match(ki))),data(:,j));
         end
     end
-    input_data(i).mapping=mapping;
+% % % load(['C:\Users\thomas.sauter\OneDrive - University of Luxembourg\work_other\Projects\Elena_2024\scMetMod\1ResultsData_1_model_orig\Discretization_Step\mapping' num2str(i) '.mat'])
+
+input_data(i).mapping=mapping;
     if printLevel==1
         name = [path,'/Discretization_Step/mapping',num2str(i)];
         save(name,'mapping');
@@ -60,8 +69,13 @@ for c=1:numel(Cover_range)
             
             % First step : Load each data + add the correct header
             table_mapped = input_data(i).table_final;
+
+            if isnumeric(table2array(table_mapped(ib,2:end)))
+                table_1 = table2array(table_mapped(:,2:end)); %%%
+            else
+                table_1 = str2double(table_mapped{:,2:end});
+            end
             
-            table_1 = table2array(table_mapped(:,2:end));
             table_1 = table_1(:);
             table_num = table_1;
             
