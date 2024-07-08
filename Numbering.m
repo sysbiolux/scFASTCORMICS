@@ -12,9 +12,11 @@ input_data=struct();
     
 for i=1:files_length    
     %import data
-    data = readtable([scdataset(i).folder,'/', scdataset(i).name]);  
+    data = readtable([scdataset(i).folder,'/', scdataset(i).name]);
+    if ~isnumeric(data.GeneID)
+        data.GeneID=str2double(data.GeneID);
+    end
     
-   
     %add 'Gene Numeration' column to the right position, after Gene ID
     gene_numeration = cellstr(convertStringsToChars(strcat(num2str(data.GeneID) ,'_',num2str(i))));
     gene_numeration = strrep(gene_numeration,' ','');
