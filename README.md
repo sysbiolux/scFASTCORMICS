@@ -9,7 +9,7 @@ scFASTCORMICS requires the Cplex solver, the COBRA toolbox and rFASTCORMICS that
 
 Inputs:
 The single-cell data should be stored in a Folder called dataset with subfolder with the called Data1, Data2, etc. if the building is performed for more dataset. 
-The Data folders should contain text files, one per cluster, in table form with the row names being the genes, the columns corresponding to the cells in the cluster and the entries to the normalized intensities obtained after running Seurat or any other clustering tool.
+The Data folders should contain text files, one per cluster, in table form with the row names being the genes, the columns corresponding to the cells in the cluster and the entries to the normalized intensities obtained after running Seurat or any other clustering tool. See driverR.rmd for an example on how data can be exported from a Seurat object.
 
 The bulk data should be first discretized the map_2_expression function of rFASTCORMICS. To obtain a table with the data identifier as row names and the sample as columns. The entries are discretized values: 1 (expressed), (0) unknown, -1 (not expressed) 
 
