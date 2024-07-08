@@ -1,0 +1,102 @@
+---
+title: "Elena 2024: Keratinocyte single-cell data
+"
+output: html_document
+---
+
+```{r}
+library(Seurat)
+library(tidyverse)
+library(ggplot2)
+library(FactoMineR)
+library(factoextra)
+
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+library("biomaRt")
+```
+
+```{r}
+# setwd('/mnt/data/users-home/thomas.sauter/Claudia_2023')
+setwd('../Elena_2024')
+
+# combined.all <- readRDS("combined.all_annotated.rds")
+sdata <- readRDS("K82_K86_integrated_FINAL.rds")
+```
+
+```{r}
+table(sdata$new_names)
+prop.table(table(sdata$new_names))
+table(sdata$orig.ident, sdata$new_names)
+table(sdata$seurat_clusters)
+table(sdata$orig.ident)
+
+# Visualization
+p <- DimPlot(sdata, reduction = "umap", label = TRUE)
+print(p)
+p1 <- DimPlot(sdata, reduction = "umap", label = TRUE, group.by = "orig.ident",pt.size = 1.5)
+print(p1)
+
+dim(sdata$RNA@counts)
+```
+
+```{r}
+# Separating the clusters into different variables
+maxNrCells <- 1000
+
+counts_matrix <- sdata[["RNA"]]$counts
+print(dim(counts_matrix))
+listNames <- unique(sdata$new_names)
+listNames
+cell_types_to_extract <- c("H","M","P","TD1","TD2","F1","F2")
+# cell_types_to_extract <- c("H")
+cell_types_to_extract
+table(sdata$new_names)
+
+# for (ii in 1:length(cell_types_to_extract)) {
+#   ii
+#   subset_counts_matrix <- counts_matrix[ ,sdata$new_names %in% cell_types_to_extract[ii]]
+#   if (ncol(subset_counts_matrix) > maxNrCells) {
+#     subset_counts_matrix <- subset_counts_matrix[ , 1:maxNrCells]
+#   }
+#   print(dim(subset_counts_matrix))
+#   write.table(subset_counts_matrix, file = paste("./Cluster_",ii,".txt",sep = ""))
+# }
+```
+
+```{r}
+mart <- useMart("ensembl")
+mart <- useDataset("hsapiens_gene_ensembl", mart = mart)
+head(listAttributes(mart))
+
+EnsemblGeneID <- rownames(counts_matrix)
+
+geneTable <- getBM(attributes= c("ensembl_gene_id", 
+                                 "external_gene_name", "entrezgene_id"), 
+                   values= EnsemblGeneID, mart= mart) 
+head(geneTable)
+head(geneTable$entrezgene_id)
+
+for (ii in 1:length(cell_types_to_extract)) {
+  ii
+  subset_counts_matrix <- counts_matrix[ ,sdata$new_names %in% cell_types_to_extract[ii]]
+  if (ncol(subset_counts_matrix) > maxNrCells) {
+    subset_counts_matrix <- subset_counts_matrix[ , 1:maxNrCells]
+  }
+  
+  data <- subset_counts_matrix
+  
+  m <- match(rownames(data),geneTable$external_gene_name)
+  GeneID <- geneTable$entrezgene_id[m]
+  Var1 <- GeneID
+  head(rownames(data))
+  head(GeneID)
+  
+  data2 <- cbind(EnsemblGeneID, GeneID,Var1,as.matrix(data[, 1:min(ncol(data),maxNrCells)]))
+  head(data2)
+  print(dim(data2))
+  
+  write.table(data2, file = paste("./Cluster_",ii,".txt",sep = ""), row.names = F)
+}
+```
+
