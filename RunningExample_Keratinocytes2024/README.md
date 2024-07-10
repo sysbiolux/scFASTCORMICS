@@ -9,4 +9,6 @@ In this example we reconstruct a Metabolic Multi-Cell Population Model of timepo
 
 call_scFASTCORMICS_mediumTS: Generates medium constraint Metabolic Multi-Cell Population Model
 
-driverAnalysisMP_TS: Generates some model stats and performs basic analysis of exchanged metabolites.
+driverAnalysisMP_TS: Generates some model stats and performs basic analysis of exchanged metabolites. For this a combined weighted biomass is optimized:
+
+Sum of all clusters: Cells(i)/TotaCells * biomass(i) -> max
