@@ -11,4 +11,4 @@ call_scFASTCORMICS_mediumTS: Generates medium constraint Metabolic Multi-Cell Po
 
 driverAnalysisMP_TS: Generates some model stats and performs basic analysis of exchanged metabolites. For this a combined weighted biomass is optimized:
 
-Sum of all clusters: Cells(i)/TotaCells * biomass(i) -> max
+Sum over all clusters i: Cells(i)/TotaCells * biomass(i) -> max
