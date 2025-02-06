@@ -171,6 +171,9 @@ ind7=1; %intercluster_trans_Smat_4_1_cluster begin dim2 (ind8 == end)
 ind9=1;%intercluster_trans_Smat_4_1_cluster2 begin dim1 (ind10 == end)
 %dim2 == ind7 and ind8
 
+
+comp_num = 1
+
 for i=1:number_of_cluster
     % loops through every cell population 
     % the previous section  created the empty S matrix, this section does
@@ -180,7 +183,8 @@ for i=1:number_of_cluster
     
     % genes are copied with a postfix for all clusters, all genes can be
     % copied! no further action needed
-    expanded_input_model.genes=[expanded_input_model.genes;strcat(model.genes,'_', num2str(i))];
+    postfix = strcat('_comp',comp_num, '_', num2str(i));
+    expanded_input_model.genes=[expanded_input_model.genes;strcat(model.genes,postfix)];
     
     if i>1
         ind=ind2+1;
@@ -200,9 +204,9 @@ for i=1:number_of_cluster
     intercluster_trans_Smat2(ind9:ind10,ind7:ind8)=intercluster_trans_Smat_4_1_cluster2;
     % the internal rxns and mets are copied per cluster as well as the
     % metabolites which are intracellular part of the transport reactions
-    internal_rxns_array(ind3:ind4,1)=strcat(internal_rxns,'_', num2str(i));
-    mets(ind: ind2)=strcat(internal_mets,'_', num2str(i));
-    intercluster_trans_array(ind7:ind8,1)=(strcat(intercluster_transport,'_', num2str(i)));
+    internal_rxns_array(ind3:ind4,1)=strcat(internal_rxns,postfix);
+    mets(ind: ind2)=strcat(internal_mets,postfix);
+    intercluster_trans_array(ind7:ind8,1)=(strcat(intercluster_transport,postfix));
    
     for ii=1:numel(fields)
         % looping through every slot of the model
