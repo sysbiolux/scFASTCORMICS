@@ -308,8 +308,8 @@ S2=[sparse(size(umets,1),size(internal_S_matrix,2)),intercluster_trans_Smat2];
 S=[S;S2];
 S7=sparse(size(intercluster_trans_Smat,1), numel(exRxns));
 S8=[S7;eye(size(intercluster_trans_Smat2,1))*-1];
-S2=[S;sparse(size(intercluster_trans_Smat2,1),size(S,2))];
-S=[S2, [S8;eye(size(intercluster_trans_Smat2,1))]];
+% S=[S2, [S8;eye(size(intercluster_trans_Smat2,1))]];
+S=[S2, S8];
 
 S7=sparse(size(S,1), numel(exRxns));
 S7(end+1-size(eye(size(intercluster_trans_Smat2,1)),1):end,:)=eye(size(intercluster_trans_Smat2,1));
@@ -341,161 +341,161 @@ expanded_input_model.rxns=[internal_rxns_array(:,1);intercluster_trans_array(:,1
 % transport reactions) so it is clear that for example the lower bound is
 % set to -1000, and can be done for all exchange and transport rxns
 
-%%% QUESTIONS: 
-% - why do we here take the median and the mean for the rev,b and c slot
-% for the exchange and transport rxns ? 
-
-for ii=1:numel(fields)
-    if size( model.(fields{ii}),1)==size( model.rxns,1) && size( model.(fields{ii}),1)~=size( model.mets,1)
-        if iscell(expanded_input_model.(fields{ii}))
-            
-            rul=[internal_rxns_array(:,ii+1);intercluster_trans_array(:,ii+1);cell(numel(trans),1);cell(numel(Ex),1)];
-            rul(cellfun('isempty',rul))=cellstr('');
-            expanded_input_model.(fields{ii})=rul;
-            
-        else
-            if strcmp(fields{ii}, 'lb')
-                
-                %% lower bounds set -1000 by defaut for trans and Ex
-                expanded_input_model.(fields{ii})=[internal_rxns_array_n(:,ii+1);intercluster_trans_array_n(:,ii+1);ones(numel(trans),1)*-1000; ones(numel(Ex),1)*-1000];
-            else
-                % c & rev  - why median ? 
-                expanded_input_model.(fields{ii})=[internal_rxns_array_n(:,ii+1);intercluster_trans_array_n(:,ii+1);ones(numel(trans),1)*median(internal_rxns_array_n(:,ii+1)); ones(numel(Ex),1)*median(internal_rxns_array_n(:,ii+1))];
-            end
-        end
-    else
-        if iscell(expanded_input_model.(fields{ii}))
-            [~,index]=ismember(exmets,model.mets);
-            temp2=cell(numel(exmets),1);
-            temp=model.(fields{ii});
-            temp2(index>0)=temp(index(index>0));
-            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});temp2;temp2];
-        else
-            % b slot - why the mean ? 
-            expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}));ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}))];
-        end
-    end
-end
-
-
-
-
-%% Correct reversibility of the rxns
-
-lb=zeros(numel(exmets),1);
-ub=zeros(numel(exmets),1);
-grRules=cell(numel(exmets),1);
-R_ex=cell(numel(exmets),1);
-
-% since the ex rxns are still defined as 1 in the s matrix the sign needs
-% to be flipped - toy model convention ? Recon convention ???
-for i=1:numel(exmets)
-    [~,r]=find(model.S(ismember(model.mets,exmets(i)),:));
-    r=intersect(model.rxns(r),exRxns);
-    R_ex(i,1)=r;
-    
-    sign=model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r));
-    if full(sign) >0
-        % then flip
-        model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r))=-sign;
-        tmp=model.ub(ismember(model.rxns,r));
-        model.ub(ismember(model.rxns,r))=-model.lb(ismember(model.rxns,r));
-        model.lb(ismember(model.rxns,r))=-tmp;
-    end
-end
-% this part I do not get... - 
-% so we create lb and ub with all zeros, then we manipulate this 
-% we get the indices of the R_ex in the model.rxns 
-[~,index]=ismember(R_ex,model.rxns);
-% then we filter out all the R_ex which are not in the model.rxns by
-% excluding the zero entrie in the indices vector
-lb(index>0)=model.lb(index(index>0));
-ub(index>0)=model.ub(index(index>0));
-% transfer the lb & ub from the consensus model to the expanded model, the
-% indices of the ex rxns change between those two models, therefore this
-% transfer is needed
-
-Table_bound=table(R_ex,lb, ub, exmets,strcat('Ex_',exmets));
-[~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
-expanded_input_model.lb(index>0)=Table_bound.lb(index(index>0));
-expanded_input_model.ub(index>0)=Table_bound.ub(index(index>0));
-
-
-
-%%
-% now the reversibility slot is fixed, for all the rxns the lb were set,
-% so for the rxns which have a negative lb we can assume that they are
-% reversible 
-expanded_input_model.rev= sparse(numel(expanded_input_model.rxns),1);
-expanded_input_model.rev(expanded_input_model.lb<0)=1;
-
-
-%%
-% building the RxnGene matrix from grRules slot
-expanded_input_model = buildRxnGeneMat(expanded_input_model);
-% creating the .rule slot from grRules
-expanded_input_model = creategrRulesField(expanded_input_model);
-% fixing Irr rxns ? what does that mean? 
-expanded_input_model=fixIrr_rFASTCORMICS(expanded_input_model);
-
-% % this is the fixIrr function code: 
-% the code check if the rxn is really reversible, looking at the lower
-% upper bound, if the upper bound is lower then 0 or the lower bound
-% bigger then 0  then the rxn is not reversible rev = 0 
-% this works for the rxns which have a lower bound bigger than 0, since
-% the rxns is defined A + B <=> C but if the ub is <= 0 then the rxns
-% needs to be turned around 
-% model.rev = zeros(numel(model.rxns),1);
-% % the  
-% model.rev(model.lb <0 & model.ub> 0) = 1;
-% Irr=(model.lb >=0 & model.ub>0| model.ub<=0 & model.lb<0);
-% model.rev(Irr) = 0;
-% FakeIrr= model.ub <=0 & model.lb<0;
-% model.S(:, FakeIrr) = -model.S(:,FakeIrr);
-% model.ub(FakeIrr) = -model.lb(FakeIrr);
-% model.lb(FakeIrr) = zeros(sum(FakeIrr),1);
-
-%% 
-% correct rules for exchanges
-% question: the exchange rxns are empty bevore and after -> 
-% first of all, why do this code in the frist place and why should exhange
-% reactions have a gprule ? 
-
-[~,index]=ismember(R_ex,model.rxns);
-grRules(index>0)=model.grRules(index(index>0));
-% getting the rules for the exchange rxns from the consistent generic model
-% then adding to the table for the exchange reactions 
-Table_bound=[Table_bound,table(grRules)];
-rules_keep=cell(size(Table_bound,1),1);
-for counter2=1:size(Table_bound,1)
-    if ~cellfun('isempty',table2array(Table_bound(counter2,6)))
-        
-        
-        for counter=1:number_of_cluster
-            if counter==1
-                rules=strcat(table2array(Table_bound(counter2,6)),'_', num2str(counter));
-            else
-                tmp= strcat(table2array(Table_bound(counter2,6)),'_',num2str(counter));
-                rules=strcat(string(rules), ' or ','$ ', string(tmp));
-            end
-        end
-        rules=strrep(rules,'$',' ');
-        rules_keep(counter2,1)=cellstr(rules);
-    end
-    [~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
-    
-
-    expanded_input_model.grRules(index>0)=rules_keep(index(index>0),1);
-end
-    expanded_input_model.grRules(cellfun('isempty',expanded_input_model.grRules))=cellstr('');
-for i=1:numel(expanded_input_model.grRules)
-expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'or',' or ');
-     expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'and',' and ');
-end
-
-% update the rules field after altering the grRules slot
-expanded_input_model = generateRules(expanded_input_model);
-
+% %%% QUESTIONS: 
+% % - why do we here take the median and the mean for the rev,b and c slot
+% % for the exchange and transport rxns ? 
+% 
+% for ii=1:numel(fields)
+%     if size( model.(fields{ii}),1)==size( model.rxns,1) && size( model.(fields{ii}),1)~=size( model.mets,1)
+%         if iscell(expanded_input_model.(fields{ii}))
+%             
+%             rul=[internal_rxns_array(:,ii+1);intercluster_trans_array(:,ii+1);cell(numel(trans),1);cell(numel(Ex),1)];
+%             rul(cellfun('isempty',rul))=cellstr('');
+%             expanded_input_model.(fields{ii})=rul;
+%             
+%         else
+%             if strcmp(fields{ii}, 'lb')
+%                 
+%                 %% lower bounds set -1000 by defaut for trans and Ex
+%                 expanded_input_model.(fields{ii})=[internal_rxns_array_n(:,ii+1);intercluster_trans_array_n(:,ii+1);ones(numel(trans),1)*-1000; ones(numel(Ex),1)*-1000];
+%             else
+%                 % c & rev  - why median ? 
+%                 expanded_input_model.(fields{ii})=[internal_rxns_array_n(:,ii+1);intercluster_trans_array_n(:,ii+1);ones(numel(trans),1)*median(internal_rxns_array_n(:,ii+1)); ones(numel(Ex),1)*median(internal_rxns_array_n(:,ii+1))];
+%             end
+%         end
+%     else
+%         if iscell(expanded_input_model.(fields{ii}))
+%             [~,index]=ismember(exmets,model.mets);
+%             temp2=cell(numel(exmets),1);
+%             temp=model.(fields{ii});
+%             temp2(index>0)=temp(index(index>0));
+%             expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});temp2;temp2];
+%         else
+%             % b slot - why the mean ? 
+%             expanded_input_model.(fields{ii})=[expanded_input_model.(fields{ii});ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}));ones(numel(umets),1)*mean(expanded_input_model.(fields{ii}))];
+%         end
+%     end
+% end
+% 
+% 
+% 
+% 
+% %% Correct reversibility of the rxns
+% 
+% lb=zeros(numel(exmets),1);
+% ub=zeros(numel(exmets),1);
+% grRules=cell(numel(exmets),1);
+% R_ex=cell(numel(exmets),1);
+% 
+% % since the ex rxns are still defined as 1 in the s matrix the sign needs
+% % to be flipped - toy model convention ? Recon convention ???
+% for i=1:numel(exmets)
+%     [~,r]=find(model.S(ismember(model.mets,exmets(i)),:));
+%     r=intersect(model.rxns(r),exRxns);
+%     R_ex(i,1)=r;
+%     
+%     sign=model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r));
+%     if full(sign) >0
+%         % then flip
+%         model.S(ismember(model.mets,exmets(i)),ismember(model.rxns,r))=-sign;
+%         tmp=model.ub(ismember(model.rxns,r));
+%         model.ub(ismember(model.rxns,r))=-model.lb(ismember(model.rxns,r));
+%         model.lb(ismember(model.rxns,r))=-tmp;
+%     end
+% end
+% % this part I do not get... - 
+% % so we create lb and ub with all zeros, then we manipulate this 
+% % we get the indices of the R_ex in the model.rxns 
+% [~,index]=ismember(R_ex,model.rxns);
+% % then we filter out all the R_ex which are not in the model.rxns by
+% % excluding the zero entrie in the indices vector
+% lb(index>0)=model.lb(index(index>0));
+% ub(index>0)=model.ub(index(index>0));
+% % transfer the lb & ub from the consensus model to the expanded model, the
+% % indices of the ex rxns change between those two models, therefore this
+% % transfer is needed
+% 
+% Table_bound=table(R_ex,lb, ub, exmets,strcat('Ex_',exmets));
+% [~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
+% expanded_input_model.lb(index>0)=Table_bound.lb(index(index>0));
+% expanded_input_model.ub(index>0)=Table_bound.ub(index(index>0));
+% 
+% 
+% 
+% %%
+% % now the reversibility slot is fixed, for all the rxns the lb were set,
+% % so for the rxns which have a negative lb we can assume that they are
+% % reversible 
+% expanded_input_model.rev= sparse(numel(expanded_input_model.rxns),1);
+% expanded_input_model.rev(expanded_input_model.lb<0)=1;
+% 
+% 
+% %%
+% % building the RxnGene matrix from grRules slot
+% expanded_input_model = buildRxnGeneMat(expanded_input_model);
+% % creating the .rule slot from grRules
+% expanded_input_model = creategrRulesField(expanded_input_model);
+% % fixing Irr rxns ? what does that mean? 
+% expanded_input_model=fixIrr_rFASTCORMICS(expanded_input_model);
+% 
+% % % this is the fixIrr function code: 
+% % the code check if the rxn is really reversible, looking at the lower
+% % upper bound, if the upper bound is lower then 0 or the lower bound
+% % bigger then 0  then the rxn is not reversible rev = 0 
+% % this works for the rxns which have a lower bound bigger than 0, since
+% % the rxns is defined A + B <=> C but if the ub is <= 0 then the rxns
+% % needs to be turned around 
+% % model.rev = zeros(numel(model.rxns),1);
+% % % the  
+% % model.rev(model.lb <0 & model.ub> 0) = 1;
+% % Irr=(model.lb >=0 & model.ub>0| model.ub<=0 & model.lb<0);
+% % model.rev(Irr) = 0;
+% % FakeIrr= model.ub <=0 & model.lb<0;
+% % model.S(:, FakeIrr) = -model.S(:,FakeIrr);
+% % model.ub(FakeIrr) = -model.lb(FakeIrr);
+% % model.lb(FakeIrr) = zeros(sum(FakeIrr),1);
+% 
+% %% 
+% % correct rules for exchanges
+% % question: the exchange rxns are empty bevore and after -> 
+% % first of all, why do this code in the frist place and why should exhange
+% % reactions have a gprule ? 
+% 
+% [~,index]=ismember(R_ex,model.rxns);
+% grRules(index>0)=model.grRules(index(index>0));
+% % getting the rules for the exchange rxns from the consistent generic model
+% % then adding to the table for the exchange reactions 
+% Table_bound=[Table_bound,table(grRules)];
+% rules_keep=cell(size(Table_bound,1),1);
+% for counter2=1:size(Table_bound,1)
+%     if ~cellfun('isempty',table2array(Table_bound(counter2,6)))
+%         
+%         
+%         for counter=1:number_of_cluster
+%             if counter==1
+%                 rules=strcat(table2array(Table_bound(counter2,6)),'_', num2str(counter));
+%             else
+%                 tmp= strcat(table2array(Table_bound(counter2,6)),'_',num2str(counter));
+%                 rules=strcat(string(rules), ' or ','$ ', string(tmp));
+%             end
+%         end
+%         rules=strrep(rules,'$',' ');
+%         rules_keep(counter2,1)=cellstr(rules);
+%     end
+%     [~,index]=ismember(expanded_input_model.rxns,table2array(Table_bound(:,5)));
+%     
+% 
+%     expanded_input_model.grRules(index>0)=rules_keep(index(index>0),1);
+% end
+%     expanded_input_model.grRules(cellfun('isempty',expanded_input_model.grRules))=cellstr('');
+% for i=1:numel(expanded_input_model.grRules)
+% expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'or',' or ');
+%      expanded_input_model.grRules(i)=strrep(expanded_input_model.grRules(i),'and',' and ');
+% end
+% 
+% % update the rules field after altering the grRules slot
+% expanded_input_model = generateRules(expanded_input_model);
+% 
 
 
 
