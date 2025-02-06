@@ -10,13 +10,13 @@ if small_model
     reference_model=addReaction(reference_model,'R4', ' 1D[m] + H[m]  -> I[m] + J[m] ');
     reference_model=addReaction(reference_model,'R6', '<=> H[e] ');
     reference_model=addReaction(reference_model,'R8', '<=> J[e]');
-    reference_model=addReaction(reference_model,'R9', '-> B[n] ');
+    %reference_model=addReaction(reference_model,'R9', '-> B[n] ');
     reference_model=addReaction(reference_model,'R10', '<=> I[e]');
-    reference_model=addReaction(reference_model,'R11', 'I[m] + K[e] <=> I[e] + K[m]');
-    reference_model=addReaction(reference_model,'R12', 'B[c] + K[m] <=> B[n] + K[e] ');
+    reference_model=addReaction(reference_model,'R11', 'I[m] <=> I[e] ');
+    %reference_model=addReaction(reference_model,'R12', 'B[c] + K[m] <=> B[n] + K[e] ');
     reference_model=addReaction(reference_model,'R13', 'J[m] <=> J[e]');
     reference_model=addReaction(reference_model,'R15', 'H[m] <=> H[e]');
-    reference_model=addReaction(reference_model,'R16', 'K[m] <=> ');
+    %reference_model=addReaction(reference_model,'R16', 'K[m] <=> ');
     reference_model.rev=zeros(numel(reference_model.rxns),1);
     reference_model.rev(reference_model.lb<0)=1;
     reference_model.rules={'x(1)';'x(2)';'x(3)';'x(4)';'x(5)';'x(6)';'x(7)';'x(8)';'x(9)';'x(10) | x(11)'};%;'x(12)';'x(13)';'x(14)';'x(15)'};% ;'x(16)';'x(17)';'x(18)'; 'x(19)';'x(20)'};
