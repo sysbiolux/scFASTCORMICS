@@ -29,11 +29,20 @@ end
     end
     match=find(~strcmp(model_composite.rules,'')& sum(model_composite.rxnGeneMat,2)>1);
 
-    for j=1:size(data,2)
-        for ki=1:numel(model_composite.rxns(match))
-            mapping(match(ki),j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model_composite.rules(match(ki))),data(:,j));
-        end
-    end
+%     for j=1:size(data,2)
+%         for ki=1:numel(model_composite.rxns(match))
+%             mapping(match(ki),j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model_composite.rules(match(ki))),data(:,j));
+%         end
+%     end
+
+tic
+rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
+for ki=1:numel(model_composite.rxns(match))
+            mappingb(match(ki),:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(match(ki))),...
+                                                          data(:,1:20));
+end
+toc
+
 % % % load(['C:\Users\thomas.sauter\OneDrive - University of Luxembourg\work_other\Projects\Elena_2024\scMetMod\1ResultsData_1_model_orig\Discretization_Step\mapping' num2str(i) '.mat'])
 
 input_data(i).mapping=mapping;
