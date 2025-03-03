@@ -8,28 +8,22 @@ numel(model_composite.rxns(match))
 
 tic
 for ki=1:numel(model_composite.rxns(match))
-    if ~contains(model_composite.rxns(match(ki)),"ATPasel") & ~contains(model_composite.rxns(match(ki)),"ATPS4mi")
         for j=1:20
             mappinga(match(ki),j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model_composite.rules(match(ki))),...
                                                               data(:,j));
         end
-    end
 end
 toc
 
-
-
-rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
-
 tic
-
+rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
 for ki=1:numel(model_composite.rxns(match))
-            mappingb(match(ki),:)= GPRrulesMapper_new(cell2mat(rules(match(ki))),...
+            mappingb(match(ki),:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(match(ki))),...
                                                           data(:,1:20));
 end
 toc
 
-% are the two mappings the same 
+% are the two mappings the same ? 
 sum(mappinga ~= mappingb)
 
 
