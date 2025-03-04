@@ -8,6 +8,7 @@ files_length= numel(input_data);
 % loading in the mapped_cluster_data
 Nb_core=zeros(numel(Cover_range)*numel(REI_range));
 disp('... mapping ...')
+tic
 for i=1:files_length
     i
     % First step : Load each data + add the correct header
@@ -35,13 +36,13 @@ end
 %         end
 %     end
 
-tic
+
 rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
 for ki=1:numel(model_composite.rxns(match))
-            mappingb(match(ki),:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(match(ki))),...
-                                                          data(:,1:20));
+            mapping(match(ki),:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(match(ki))),...
+                                                              data);
 end
-toc
+
 
 % % % load(['C:\Users\thomas.sauter\OneDrive - University of Luxembourg\work_other\Projects\Elena_2024\scMetMod\1ResultsData_1_model_orig\Discretization_Step\mapping' num2str(i) '.mat'])
 
@@ -51,7 +52,7 @@ input_data(i).mapping=mapping;
         save(name,'mapping');
     end
 end
-
+toc
 
 % takes about 5min  --  before taking the mapping loop out, the code would
 % have ran for more than a day
