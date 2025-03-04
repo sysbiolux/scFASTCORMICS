@@ -26,8 +26,7 @@ printLevel=1;
 %Path
 % % % changeCobraSolver('ibm_cplex')
 % % % user_path='C:\Users\maria.pacheco\OneDrive - University of Luxembourg\Documents\GitHub\scFASTCORMICS_o';
-user_path='C:\Users\thomas.sauter\OneDrive - University of Luxembourg\work_other\Projects\Elena_2024\scMetMod\TEST_NEW_SCFASTCORMICS_VERSION'
-
+user_path='C:\Users\leonie.thomas\scFASTCORMICS\'
 % Data_1
 % % % biodbnet = readtable([user_path,'\dico_biodbnet.txt']); % The dictionary should map the model genes id to the data ids
 biodbnet = readtable(['dico_biodbnet.txt']); % The dictionary should map the model genes id to the data ids
