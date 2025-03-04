@@ -1,5 +1,5 @@
 % driver analysis, TS 07/23
-%% scFASTCORMICS results 
+%% scFASTCORMICS results
 clearvars -except solverOK, clc, close all force
 
 %% Load model/define the clusters. conditions and the medium
@@ -124,7 +124,7 @@ for counter=1:numel(Results_keep) %per model
     J=nan(numel(clusterSize.Properties.VariableNames));
     %     model=Results_keep(counter).multi_cell_population_model;
     model=Results_keep(counter).multi_cell_population_model;
-
+    
     for counter2=1:numel(clusterSize.Properties.VariableNames) %per cluster
         idx1 = strfind(model.rxns, ['_' num2str(counter2)]);
         idx1 = find(not(cellfun('isempty', idx1)));
@@ -137,7 +137,7 @@ for counter=1:numel(Results_keep) %per model
         end
     end
     disp(['Jaccard similarity Model:' num2str(counter)])
-
+    
     altcolor = [255 255 255;255 204 204; 255 153 153; 255 102 102; 255 51 51;...
         255 0 0; 204 0 0; 152 0 0; 102 0 0; 51 0 0]/255;
     cgo_J = clustergram(J,...
@@ -162,12 +162,12 @@ Pathways_keep=struct();
 for i=1:numel(names_col)
     multiCellModel=Results_keep(i).multi_cell_population_model;
     [Pathways]=PathwayAnalysisMultiCellModel(multiCellModel,ExpandedInputModel,  clusterSize.Properties.VariableNames);
-
+    
     Pathways_keep(i).Analysis=Pathways;
     Pathways_keep(i).multiCellModel=multiCellModel;
     %Making a plot that show interesting pathways differences
     %between the different clusters (Tumor)
-
+    
     %Finding the size of the top 30 most differentially present pathways
     Diff=zeros(size(Pathways,1),1);
     %Finding top thirty pathways differential
@@ -178,9 +178,9 @@ for i=1:numel(names_col)
     end
     Pathways2=[Pathways, table(Diff)];
     index=find(~isnan(Pathways2.Diff));
-
+    
     ClusterRatioShort=Pathways2(index(1:30),:);
-
+    
     cgo_Path = clustergram(table2array(ClusterRatioShort(:,1:end-1)),...
         'RowLabels',ClusterRatioShort.Row ,...
         'ColumnLabels',ClusterRatioShort.Properties.VariableNames(1:end-1),...
@@ -190,18 +190,18 @@ for i=1:numel(names_col)
         'Colormap',redbluecmap,...
         'DisplayRange',1000,...
         'DisplayRatio', [0.2 0.2]);
-
+    
     addTitle(cgo_Path, cellstr(strcat('Pathway Analysis: ',' ', names_col{i})));
-
+    
     graph = plot(cgo_Path);
     set(graph, 'Clim', [0,1])
     colormap(graph,"copper")
-
+    
     figureHandle = gcf;
     %# make all text in the figure to wanted size and bold
     set(findall(figureHandle,'type','text'),'fontSize',16,'fontWeight','bold')
     set(findall(figureHandle, 'type','axes','tag','HeatMapAxes'),'fontsize',16)
-
+    
 end
 
 
@@ -279,7 +279,7 @@ for i=1:numel(ExchangesKeep)
         'DisplayRange',10,...
         'DisplayRatio', [0.2 0.2]);
     
-%     addTitle(cgo_Path, cellstr(strcat('FBA of exchanged metabolites','Model:', names_col(i), ', sortflag: ',num2str(sortFlag))))
+    %     addTitle(cgo_Path, cellstr(strcat('FBA of exchanged metabolites','Model:', names_col(i), ', sortflag: ',num2str(sortFlag))))
     addTitle(cgo_Path, cellstr(strcat('FBA of exchanged metabolites','Model:', names_col(i))))
     
     plot(cgo_Path);
@@ -340,3 +340,34 @@ else
         end
     end
 end
+
+%% extract indivudal GEMs from community model
+clearvars -except solverOK, clc, close all force
+
+load('Results09-Jul-2024.mat')
+Results_keep=Results
+Results_keep.multi_cell_population=Results_keep.multi_cell_population_model;
+
+model=Results_keep(1).multi_cell_population_model
+
+modelToExtract=1 %which cluster to extract
+
+% Extract individual GEM
+% This will only include the reactions of the desired cluster, 
+% but the resulting model will not be consistent.
+% For consistency reactions of the other clusters will be necessary.
+% See below. 
+idx = strfind(model.rxns, ['_' num2str(modelToExtract)]);
+idxToKeep = find(not(cellfun('isempty', idx)));
+numel(idxToKeep)
+modelInd   = removeRxns(model,model.rxns(setdiff(1:numel(model.rxns),idxToKeep)));
+modelInd.description='Reactions Cluster 1'
+
+% Extract consistent individual GEM
+% This will include some reactions of other submodels to ensure consistency
+A      = fastcore_4_rfastcormics(idxToKeep, model, 1e-4, []);
+modelIndCons   = removeRxns(model,model.rxns(setdiff(1:numel(model.rxns),A)));
+modelIndCons.description='Model Cluster 1'
+
+A2 = fastcc_4_rfastcormics(modelIndCons, 1e-4, 1);
+numel(A2)
