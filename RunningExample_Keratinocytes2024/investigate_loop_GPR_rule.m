@@ -28,6 +28,11 @@ sum(mappinga ~= mappingb)
 
 
 %% toy data - to check if the matrix wise computation of the GPR are correct
+% - there are online posts saying that a eval can not be used in a parfor
+% loop - https://nl.mathworks.com/matlabcentral/answers/579876-how-can-we-handle-the-conditional-use-of-a-parfor-loop-with-the-eval-function
+% - the weird thing is that it works for my toy example but not for the big
+% one 
+% error message: Error using GPRrulesMapper_rFASTCORMICS (line 4) Error: The input was too complicated or too big for MATLAB to parse.
 
 data = [ 1 0 5 8;
          0 3 0 8;
@@ -47,12 +52,34 @@ disp("changed rules:")
 rules = regexprep(rules,'x\(([0-9]*)\)','x($1,:)')'
 mapping = zeros(numel(rules), size(data,2));
 
+tic
 for k=1:numel(rules)
             mapping(k,:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(k)),...
                                                           data);
 end
+toc
+
+
+mapping = zeros(numel(rules), size(data,2));
+tic
+parfor k=1:numel(rules)
+            mapping(k,:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(k)),...
+                                                          data);
+end
+toc
 
 sum(mapping ~= correct_results)
+
+
+%% this is a script to investigate how to perform parallel computing in
+% matlab 
+
+ver % displays which toolboxes are installed 
+
+
+parfor i = 1:100
+    c(i) = max(eig(rand(1000)));
+end
 
 
 
