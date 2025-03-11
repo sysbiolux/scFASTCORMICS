@@ -34,6 +34,7 @@ sum(mappinga ~= mappingb)
 % one 
 % error message: Error using GPRrulesMapper_rFASTCORMICS (line 4) Error: The input was too complicated or too big for MATLAB to parse.
 
+addpath(genpath("path to fastcormics to be able to runGPRulesMapper"))
 data = [ 1 0 5 8;
          0 3 0 8;
          0 4 6 8;
