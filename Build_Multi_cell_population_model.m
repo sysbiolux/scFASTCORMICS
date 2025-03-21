@@ -1,5 +1,33 @@
 function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel,function_keep)
-% %% Discretization of the data : Cover and REI
+% Build_Multi_cell_population_model
+%   This function takes the generic consistent expanded model and performs
+%   3 main tasks: 
+%       1) Mapping of the gene expression to protein abundance using the
+%       GPR rules 
+%       2) Determines the set of core reactions based on a threshold set (coverage and REI) on
+%       the mapped protein abundance
+%       3) Builds consistent context-specific multi-cell population model for every set of core reaction by running fastcore
+% 
+%   INPUT: 
+%   model_composite:    consistent generic multi population model 
+%   input_data:         struct with two fields, in this function the
+%                       input_data field is used, which entails one table
+%                       for each cluster/cell population in the model. The
+%                       first column entails the gene names with a postfix
+%                       depending on the cluster number and the rest of the
+%                       columns are the single cell expression data
+%   Cover_range:        range of different values of coverage for which the 
+%                       set of core reaction should be defined  
+%   REI_range:          range of different values of REI for which the set 
+%                       of core reaction should be defined
+%   
+%
+%   OUTPUT:
+%   input_data:         input data, unchanged
+%   Optimization_global:final consistent, context-specific multi-population
+%                       model
+%   
+% Discretization of the data : Cover and REI
 %
 
 mkdir ([path,'/Discretization_Step'])
@@ -13,6 +41,10 @@ tic
 match=find(~strcmp(model_composite.rules,''));
 % change the rules of the rxns, in order to be able to loop through the
 % rxns for all cells/columns in one go x(1,:) | x(2,:) instead of x(1)|x(2)
+% the rules are adjusted here, this adjustment helps to be able to loop
+% over each of the cluster data in one go, instead of per cell, since
+% we are computing the rules on the whole matrix in one go instead of
+% every single cell separatly!
 rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
 
 

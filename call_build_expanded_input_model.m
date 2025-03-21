@@ -1,4 +1,21 @@
 function [Expanded_Input_model]=call_build_expanded_input_model(generic_input_reconstruction,number_of_cluster,run_toy_model)
+% call_build_expanded_input_model: 
+%   This function performs the expansion of a consistent model into a multi
+%   cell population model. In practice that means that the model is copied
+%   as many times as there are different cell populations in the dataset
+%   and then they are placed into a shared environment (u compartment) to
+%   enable their exchange with each other. 
+%
+%   INPUT:
+%   - generic_input_reconstruction: generic, consistent model - Recon3d model with fastcc run on it 
+%   - number_of_clusters: number of different clusters for which you want
+%   to expand the model 
+%   - run_toy_model: option to run a small toy model - to try stuff
+%
+%   OUTPUT: 
+%   - generic consistent expanded model 
+%
+%
 %  (c) Maria Pires Pacheco 2022 et al -University of Luxembourg
 
 fields_to_keep={'S','rxns', 'mets', 'metFormulas','genes', 'rules', 'grRules', 'b', 'rxnGeneMat','c', 'lb', 'ub', 'rev', 'subSystems','metFormulas'};
