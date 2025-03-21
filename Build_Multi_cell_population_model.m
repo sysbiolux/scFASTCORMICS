@@ -1,5 +1,33 @@
 function[input_data, Optimization_global]=Build_Multi_cell_population_model(model_composite,input_data,Cover_range, REI_range,path, ~, printLevel,function_keep)
-% %% Discretization of the data : Cover and REI
+% Build_Multi_cell_population_model
+%   This function takes the generic consistent expanded model and performs
+%   3 main tasks: 
+%       1) Mapping of the Gene expression to protein abundance using the
+%       GPR rules 
+%       2) determines the set of core reaction based on a threshold set on
+%       the mapped protein abundance - based on coverage and REI
+%       3) runs fastcore for every set of core reaction
+% 
+%   INPUT: 
+%   model_composite:    consistent generic multi population model 
+%   input_data:         struct with two fields, in this function the
+%                       input_data field is used, which entails one table
+%                       for each cluster/cell population in the model, the
+%                       first column is are the gene names with a postfix
+%                       depending on the cluster number and the rest of the
+%                       columns is the single cell expression data
+%   Cover_range:        range of different values of coverage for which the 
+%                       set of core reaction should be defined  
+%   REI_range:          range of different values of REI for which the set 
+%                       of core reaction should be defined
+%   
+%
+%   OUTPUT:
+%   input_data:         input data, unchanged
+%   Optimization_global:final consistent, context-specific multi-population
+%                       model
+%   
+% Discretization of the data : Cover and REI
 %
 
 mkdir ([path,'/Discretization_Step'])
@@ -8,8 +36,9 @@ files_length= numel(input_data);
 % loading in the mapped_cluster_data
 Nb_core=zeros(numel(Cover_range)*numel(REI_range));
 disp('... mapping ...')
+
 for i=1:files_length
-    i
+
     % First step : Load each data + add the correct header
     table_mapped = input_data(i).table_final;
     gene_id = table_mapped.Gene_Numeration;
@@ -28,15 +57,17 @@ end
         mapping(r(ii),:)=data(g,:);
     end
     match=find(~strcmp(model_composite.rules,'')& sum(model_composite.rxnGeneMat,2)>1);
-
-    for j=1:size(data,2)
-        for ki=1:numel(model_composite.rxns(match))
-            mapping(match(ki),j)= GPRrulesMapper_rFASTCORMICS(cell2mat(model_composite.rules(match(ki))),data(:,j));
-        end
+    
+    % the rules are adjusted here, this adjustment helps to be able to loop
+    % over each of the cluster data in one go, instead of per cell, since
+    % we are computing the rules on the whole matrix in one go instead of
+    % every single cell separatly!
+    rules = regexprep(model_composite.rules,'x\(([0-9]*)\)','x($1,:)');
+    for ki=1:numel(model_composite.rxns(match))
+                mapping(match(ki),:)= GPRrulesMapper_rFASTCORMICS(cell2mat(rules(match(ki))),...
+                                                                  data);
     end
-% % % load(['C:\Users\thomas.sauter\OneDrive - University of Luxembourg\work_other\Projects\Elena_2024\scMetMod\1ResultsData_1_model_orig\Discretization_Step\mapping' num2str(i) '.mat'])
-
-input_data(i).mapping=mapping;
+    input_data(i).mapping=mapping;
     if printLevel==1
         name = [path,'/Discretization_Step/mapping',num2str(i)];
         save(name,'mapping');
