@@ -1,4 +1,25 @@
 function[expanded_input_model]= build_expanded_input_model(generic_input_reconstruction, number_of_cluster,run_toy_model, fields_to_keep)
+% build_expanded_input_model 
+%   DONT USE THIS FUNCTION DIRECTLY IN YOUR SCRIPT, BUT USE THE FUNCTION
+%   call_build_expanded_input_model!!!!
+%
+%
+%   This function is called by the call_build_expanded_input_model function. 
+%   and returns generic consistent model object - BUT irreversable rxns and uptake
+%   rxns still need to be checked before using the expanded model!! 
+%       -> see call_build_expanded_input_model
+% 
+%   INPUT:
+%   - generic_input_reconstruction: generic, consistent model - Recon3d model with fastcc run on it 
+%   - number_of_clusters:           number of different clusters for which you want
+%                                   to expand the model 
+%   - run_toy_model:                option to run a small toy model - to try stuff
+%   - fields_to_keep:               fields to keep in the model 
+%
+%   OUTPUT: 
+%   - generic consistent model object
+%
+% (c) Leonie Thomas 2025 - University of Luxembourg
 % (c) Maria Pires Pacheco 2022 et al -University of Luxembourg
 generic_input_reconstruction.rxns = strrep(generic_input_reconstruction.rxns,'_','');
 if run_toy_model==1
