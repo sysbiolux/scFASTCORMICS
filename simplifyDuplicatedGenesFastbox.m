@@ -1,4 +1,11 @@
 function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene)
+% gets rid of dublicated genes - if a gene is dublicated the first
+% occurence in model.genes is choosen 
+% checks the genes if they are used according to the rxnGeneMat slot, no
+% entry = not used in model
+% take care, if genes are removed- since not unique, then the oder of the
+% whole genes in the model object changes !!
+% 
 %% %(c) Maria Pires Pacheco 2023 et al -University of Luxembourg
 % INPUTS
 % model_target cobra model
@@ -21,10 +28,14 @@ end
 if numel(genes) < numel(model.genes)
     %find non unique genes
     [genes,ia,ic] = unique(model.genes);
-    for i=1:numel(ia)        
+    % ia is defined -> genes = model.genes(ia)
+    % ic is defined -> model.genes = genes(ic)
+    for i=1:numel(ia)
+        % looping over all unique genes 
         dupidx = find(ic == i);
-        if numel(dupidx)>1            
-            first=min(dupidx);
+        % find indices for the first gene in model.genes
+        if numel(dupidx)>1  % is it duplicated ?       
+            first=min(dupidx); % take the first gene
             index=strfind(model.rules,strcat('x(',num2str(first),')'));
             I = model.rules(not(cellfun('isempty',index)));
             if~isempty(I)
@@ -131,7 +142,7 @@ if numel(genes) < numel(model.genes)
     end
     model.rules(match)=new2;
     
-    
+    % understood it till this point
     
     if isfield(model, 'rules_back')
         Index=strfind(model.rules_back, '&') ;
@@ -172,6 +183,10 @@ if numel(genes) < numel(model.genes)
         end
     end%
 end
+
+
+% still need to explain why it is like this!! 
+
 model=buildRxnGeneMat(model);
 mixed_rules=find(contains(model.rules, '&') & contains(model.rules, '|'));
 OR_rules=find(~contains(model.rules, '&') & contains(model.rules, '|'));
@@ -218,7 +233,8 @@ for i=1:numel(mixed_rules)
         x(g(AndGenes))=1;
         xm=x;
         
-        
+        % there is another accurance of GPRrules -> i should check that
+        % this also does run smoothly
         AndGenes=find(AndGenes);
         for iii=1:numel(AndGenes)
             xm(g(AndGenes(iii)))=-1;
