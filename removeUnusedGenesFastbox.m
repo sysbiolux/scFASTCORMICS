@@ -7,8 +7,9 @@ function[model]=removeUnusedGenesFastbox(model, tag)
 %   from gene names (in case of Recon it removes ".1").
 %
 % INPUTS
-%  model         COBRA model Structure
-%  tag           1 to remove postfix from the genenames
+%  model         COBRA model structure
+%  tag           1 to remove postfix from the genenames, 0 if nothing
+%                should be removed
 %                ('\.[0-9]+$', for recon ".1")
 %
 % OUTPUT 
@@ -45,7 +46,7 @@ if isfield(model, 'rxnGeneMat')
             [~, IA, ~] = intersect(genid,genid(~Unused_genes));
         end
         
-        if ~isempty(IA)
+        if isempty(IA)
             for i=1:numel(IA)
                 index=strfind(model.rules,strcat('x(',num2str(IA(i)),')')) ;
                 I = model.rules(not(cellfun('isempty',index)));

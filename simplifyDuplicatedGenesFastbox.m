@@ -1,21 +1,38 @@
 function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene)
-% gets rid of dublicated genes - if a gene is dublicated the first
-% occurence in model.genes is choosen 
-% checks the genes if they are used according to the rxnGeneMat slot, no
-% entry = not used in model
-% take care, if genes are removed- since not unique, then the oder of the
-% whole genes in the model object changes !!
+% simplifyDuplicatedGenesFastbox: Removes genes not utilized in the model &
+% gets rid of duplicated genes in the model. 
+%
+% In the first step it uses the rxnGeneMat slot of the model to remove
+% genes with no associated rxns in the model -> see removeUnusedGenesFastbox function
 % 
-%% %(c) Maria Pires Pacheco 2023 et al -University of Luxembourg
+% In a second step it checks for duplicated genes in the model. 
+% Since the index of genes in the .gene slot changes by deleting duplicated
+% entries, the rules & rxnGeneMat slot need to be updated accordingly.
+%
+%
 % INPUTS
-% model_target cobra model
-%   S                           m x n stoichiometric matrix
-%   lb                          n x 1 flux lower bound
-%   ub                          n x 1 flux upper bound
-%   rxns                        n x 1 cell array of reaction abbreviations
-%   c                           n x 1
+%  model            COBRA model Structure
+%  tag              1 to remove postfix from the genenames
+%                   ('\.[0-9]+$', for recon ".1")
+% 
+% OUTPUT 
+%  model            Updated COBRA model structure with unused genes removed
+%                   from the following fields:
+%                   - 'genes'jd
+%                   - 'rxnGeneMat'
+%                   - 'rules'
+%                   - 'rxnGeneMat_back' (if present)
+%                   - 'rules_back' (if present)
+% changed_rules_ON  vector specifying which rules where changed by the
+%                   function (1 changed, 0 unchanged)
+%
+%
+%(c) Leonie Thomas, 2025 - University of Luxembourg
+%(c) Maria Pires Pacheco and Thomas Sauter, 2023 -University of Luxembourg
 
-%  taggene == 1 if the model is a Recon model and the .1 has to be removed
+%%%%%%%%%%%%%%%%%%% Removing unused genes from the Model
+
+% checking that there is a rxnGeneMat slot -> used to determine unused Genes
 if isfield(model, 'rxnGeneMat')
     if numel(model.genes)~=size(model.rxnGeneMat,2)
         disp('simplifyDuplicatedGenes_fastbox was not run') 
@@ -24,12 +41,23 @@ if isfield(model, 'rxnGeneMat')
 end
 
 [model]=removeUnusedGenesFastbox(model,taggene);
+
+%%%%%%%%%%%%%%%%%%% Removing duplicated genes from the Model
+
 [genes,~,~] = unique(model.genes);
+
+%----- replace all duplicated genes in the rules --------
+
+% - unique genes are selected
+% - since we loose some gene ids, the ids the rules slot refers to needs to
+%   be updated -> enter a for loop over all genes 
+% - for non unique genes multiple all indices of all copies needs to be
+%   replaced 
+% - in the rules and in the rules_back object!
+
 if numel(genes) < numel(model.genes)
     %find non unique genes
     [genes,ia,ic] = unique(model.genes);
-    % ia is defined -> genes = model.genes(ia)
-    % ic is defined -> model.genes = genes(ic)
     for i=1:numel(ia)
         % looping over all unique genes 
         dupidx = find(ic == i);
@@ -104,8 +132,18 @@ if numel(genes) < numel(model.genes)
         model.rules_back=strrep(model.rules_back, '*','');
         model.rules_back=strrep(model.rules_back, ' ','');
     end
+    
+    
+    % ----- replace all duplicated genes in the rules --------
+    
+    % some of the rules will now entail multiple entries for the same gene id,
+    % since we replaced all the duplicated genes with the same number, 
+    % next step is to get rid of these duplicates
+    
+    
+    %%first we handle all the cases where there is only & in the fomula
     Index=strfind(model.rules, '&') ;
-    match=(cellfun('isempty',Index) & ~strcmp(model.rules, '')); % find statement only with OR
+    match=(cellfun('isempty',Index) & ~strcmp(model.rules, '')); % find statement without or
     In=strfind( model.rules, '|');
     match2=(not(cellfun('isempty',In)));
     match=match & match2;
@@ -120,10 +158,12 @@ if numel(genes) < numel(model.genes)
         AllC= strrep(AllC, ')(x', ') | (x');       
         new2(i)=AllC;
     end
-    %
+    
     model.rules(match)=new2;
+        
+    %%now we handle the formulas with only | in them   
     Index=strfind(model.rules, '&') ;
-    %
+    
     match=not(cellfun('isempty',Index));
     In=strfind( model.rules, '|');
     match2=((cellfun('isempty',In)));
@@ -142,7 +182,7 @@ if numel(genes) < numel(model.genes)
     end
     model.rules(match)=new2;
     
-    % understood it till this point
+    %now do the same for rules_back!
     
     if isfield(model, 'rules_back')
         Index=strfind(model.rules_back, '&') ;
@@ -185,17 +225,21 @@ if numel(genes) < numel(model.genes)
 end
 
 
-% still need to explain why it is like this!! 
-
 model=buildRxnGeneMat(model);
 mixed_rules=find(contains(model.rules, '&') & contains(model.rules, '|'));
 OR_rules=find(~contains(model.rules, '&') & contains(model.rules, '|'));
 AND_rules=find(contains(model.rules, '&') & ~contains(model.rules, '|'));
 
+% after correcting the rules with only & and the rules with only | in them,
+% there are still the mixed rules which have both and and or
+% looping over all the mixed rules!
+
 changed_rules_ON=zeros(numel(mixed_rules),1);
+numel(changed_rules_ON)
 for i=1:numel(mixed_rules)
-    %%
-    
+    %%    
+    disp(i)
+    numel(changed_rules_ON)
     [~,g]=find(model.rxnGeneMat(mixed_rules(i),:));
     OrGenes=zeros(numel(g),1);
     nb_AND = count(model.rules(mixed_rules(i)),'&');
@@ -210,6 +254,13 @@ for i=1:numel(mixed_rules)
             rr=mixed_rules(i);
             mapping=zeros(numel(model.rxns),1);
             
+            % this for loop finds out, which of the genes are part of a & or an |
+            % operation by setting the expression of this gene to 1/-1 and the rest to
+            % 0, by running the GPRrulemapper, you get the information wether the rxns
+            % is active or not -> if the gene is an or gene then the -1/1 will not
+            % appear in the mapping of the rxns, since the other gene in the rules
+            % which is connected by a or is set to 0
+            
             for k=1:numel(model.rxns(rr))
                 mapping(rr(k),1)= GPRrulesMapper_rFASTCORMICS(cell2mat(model.rules(rr(k))),x);
             end
@@ -222,6 +273,7 @@ for i=1:numel(mixed_rules)
                 
                 OrGenes(ii)=1;
             end
+            
             if sum(mapping(rr))==1 && sum(mapping_m(rr)==-1)==1
                 OrGenes(ii)=2;
             end
@@ -233,8 +285,9 @@ for i=1:numel(mixed_rules)
         x(g(AndGenes))=1;
         xm=x;
         
-        % there is another accurance of GPRrules -> i should check that
-        % this also does run smoothly
+        % now after defining all and and or genes 
+        % the rules are assembled back together to form shorter rules
+        % without duplicates
         AndGenes=find(AndGenes);
         for iii=1:numel(AndGenes)
             xm(g(AndGenes(iii)))=-1;
@@ -251,11 +304,14 @@ for i=1:numel(mixed_rules)
         end
         if sum(AndGenes2~=OrGenes)== numel(g)
             
+            % to make it more clear, examples from the Keratinocyte Example are put into the comments
             gAnd=g(AndGenes);
             if ~isempty(gAnd)
+                % turn '(x(410)&x(411))|x(414)|(x(410)&x(411))|x(412)' -> '(x(410)&x(411))| x(412)| x(414)' 
+    
                 rules=strcat('(x(', num2str(gAnd(1)),')&x(',num2str(gAnd(2)),'))');
                 if numel(AndGenes)>2
-                 
+                   
                     
                 else
                     OrGenes=find(OrGenes);
@@ -263,23 +319,27 @@ for i=1:numel(mixed_rules)
                         rules=strcat(rules,'| x(', num2str(g(OrGenes(o))),')');
                     end
                     model.rules(rr)=cellstr(rules);
-                    
+                    changed_rules_ON(mixed_rules(i))=1;   
                 end
             else
+                % turns 'x(1798)|x(839)|x(1219)|(x(838)&x(837))|x(837)|x(311)|x(838)|x(839)'
+                % to -> 'x(311)|x(837)| x(838)| x(839)| x(1219)| x(1798)'
                 OrGenes=find(OrGenes);
                 OrGenes=find(OrGenes);
-                
                 rules=strcat('x(', num2str(g(OrGenes(1))),')|x(',num2str(g(OrGenes(2))),')');
                 for o=3:numel(OrGenes)
                     rules=strcat(rules,'| x(', num2str(g(OrGenes(o))),')');
                 end
                 model.rules(rr)=cellstr(rules);
-                model.rules(rr)=cellstr(rules);
                 changed_rules_ON(mixed_rules(i))=1;               
             end
             
         else
+            
             SuperOR=find(OrGenes==2);
+            % rules like: '(x(431))|(x(431)&x(1570))&(x(1332))&(x(1196))'
+            % -> x(431) -> cause x(431) is essential, if the other genes
+            % are expressed does not really play a role
             if~isempty(SuperOR)
                 rules=strcat('x(', num2str(g(SuperOR(1))),')');
                 model.rules(rr)=cellstr(rules);
@@ -287,7 +347,6 @@ for i=1:numel(mixed_rules)
                 
             end
         end
-        %GLCNACT2g
         
     end
 end
@@ -302,6 +361,9 @@ for iv=1:numel(to_check)
         
     end
 end
+% after handling the mixed rules -> there might be new rules which were mixed rules before
+% but now after simplifying them they entail only &/| statements 
+% -> these we handle now
 for i=1:numel(AND_rules)
     g=unique(find(model.rxnGeneMat(AND_rules(i),:)));
     r=strcat('x(',num2str(g(1)),')');
@@ -328,6 +390,8 @@ end
 if isfield(model, 'genes')
 model=removeUnusedGenes(model);
 end
+
+% -- now that we fixed all the rules, and the rxnGeneMat slot
 model = creategrRulesField(model);
 model = buildRxnGeneMat(model);
 end
