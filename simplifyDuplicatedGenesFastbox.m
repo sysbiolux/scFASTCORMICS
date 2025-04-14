@@ -2,40 +2,45 @@ function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene,
 % simplifyDuplicatedGenesFastbox: Removes genes not utilized in the model &
 % gets rid of duplicated genes in the model. 
 %
-% In the first step it uses the rxnGeneMat slot of the model to remove
+% In the first step, it uses the rxnGeneMat slot of the model to remove
 % genes with no associated rxns in the model -> see removeUnusedGenesFastbox function
 % 
-% In a second step it checks for duplicated genes in the model. 
-% Since the index of genes in the .gene slot changes by deleting duplicated
-% entries, the rules & rxnGeneMat slot need to be updated accordingly.
-%
+% In a second step, it checks for duplicated genes in the model. 
+% Since the indices of genes in the .gene slot change by deleting duplicates,
+% the rules & rxnGeneMat slot need to be updated accordingly, so their entries
+% index the correct genes.
 %
 % INPUTS
-%  model            COBRA model Structure
-%  taggene              1 to remove postfix from the genenames
-%                   ('\.[0-9]+$', for recon ".1")
+%  model                                COBRA model Structure
+%  taggene                              1 to remove postfix from the genenames
+%                                       ('\.[0-9]+$', for recon ".1")
+%  display_changed_mixed_rules          1 to see which MIXED rules were
+%                                       changed (default = 0)
 % 
 % OUTPUT 
-%  model            Updated COBRA model structure with unused genes removed
-%                   from the following fields:
+%  model            Updated COBRA model structure with unused/duplicated genes 
+%                   removed from the following fields:
 %                   - 'genes'jd
 %                   - 'rxnGeneMat'
-%                   - 'rules'
 %                   - 'rxnGeneMat_back' (if present)
+%                   ... and ...
+%                   - 'rules'
 %                   - 'rules_back' (if present)
-% changed_rules_ON  vector specifying which of the mixed rules where changed by the
-%                   function (1 changed, 0 unchanged)
-%                   BUT: this is only the mixed rules! not the ones which
-%                   exclusively entailing & and | !!! Can be used to
+%                   updated & simplified accordingly.
+%
+% changed_rules_ON  Vector specifying which of the MIXED rules where changed by the
+%                   function (1 changed, 0 unchanged).
+%                   BUT: This is only the mixed rules! not the ones which
+%                   exclusively entail & or | !!!  This vector can be used to
 %                   understand how the more complex rules are simplified
-%                   using this function !
+%                   using this function.
 %
 %(c) Leonie Thomas, 2025 - University of Luxembourg
 %(c) Maria Pires Pacheco and Thomas Sauter, 2023 -University of Luxembourg
 
 arguments
     model (1,1) struct 
-    taggene (1,1) double
+    taggene (1,1) double =0
     display_changed_mixed_rules (1,1) double =0
 end
 
