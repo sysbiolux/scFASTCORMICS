@@ -1,4 +1,4 @@
-function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene)
+function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene,display_changed_mixed_rules)
 % simplifyDuplicatedGenesFastbox: Removes genes not utilized in the model &
 % gets rid of duplicated genes in the model. 
 %
@@ -12,7 +12,7 @@ function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene)
 %
 % INPUTS
 %  model            COBRA model Structure
-%  tag              1 to remove postfix from the genenames
+%  taggene              1 to remove postfix from the genenames
 %                   ('\.[0-9]+$', for recon ".1")
 % 
 % OUTPUT 
@@ -23,12 +23,21 @@ function[model, changed_rules_ON]=simplifyDuplicatedGenesFastbox(model, taggene)
 %                   - 'rules'
 %                   - 'rxnGeneMat_back' (if present)
 %                   - 'rules_back' (if present)
-% changed_rules_ON  vector specifying which rules where changed by the
+% changed_rules_ON  vector specifying which of the mixed rules where changed by the
 %                   function (1 changed, 0 unchanged)
-%
+%                   BUT: this is only the mixed rules! not the ones which
+%                   exclusively entailing & and | !!! Can be used to
+%                   understand how the more complex rules are simplified
+%                   using this function !
 %
 %(c) Leonie Thomas, 2025 - University of Luxembourg
 %(c) Maria Pires Pacheco and Thomas Sauter, 2023 -University of Luxembourg
+
+arguments
+    model (1,1) struct 
+    taggene (1,1) double
+    display_changed_mixed_rules (1,1) double =0
+end
 
 %%%%%%%%%%%%%%%%%%% Removing unused genes from the Model
 
@@ -234,12 +243,12 @@ AND_rules=find(contains(model.rules, '&') & ~contains(model.rules, '|'));
 % there are still the mixed rules which have both and and or
 % looping over all the mixed rules!
 
-changed_rules_ON=zeros(numel(mixed_rules),1);
-numel(changed_rules_ON)
+
+changed_rules_ON=zeros(numel(model.genes),1);
+model_old_rules = model.rules;
+
 for i=1:numel(mixed_rules)
-    %%    
-    disp(i)
-    numel(changed_rules_ON)
+    
     [~,g]=find(model.rxnGeneMat(mixed_rules(i),:));
     OrGenes=zeros(numel(g),1);
     nb_AND = count(model.rules(mixed_rules(i)),'&');
@@ -351,6 +360,9 @@ for i=1:numel(mixed_rules)
     end
 end
 
+if display_changed_mixed_rules 
+    [model.rules(find(changed_rules_ON)), model_old_rules(find(changed_rules_ON))]
+end
 
 mixed_rules_after=find(contains(model.rules, '&') & contains(model.rules, '|'));
 to_check=setdiff(1:numel(model.rxns), mixed_rules_after);
