@@ -2,20 +2,20 @@ function[input_data, Optimization_global]=Build_Multi_cell_population_model(mode
 % Build_Multi_cell_population_model
 %   This function takes the generic consistent expanded model and performs
 %   3 main tasks: 
-%       1) Mapping of the Gene expression to protein abundance using the
+%       1) Mapping of the gene expression to protein abundance using the
 %       GPR rules 
-%       2) determines the set of core reaction based on a threshold set on
-%       the mapped protein abundance - based on coverage and REI
-%       3) runs fastcore for every set of core reaction
+%       2) Determines the set of core reactions based on a threshold set (coverage and REI) on
+%       the mapped protein abundance
+%       3) Builds consistent context-specific multi-cell population model for every set of core reaction by running fastcore
 % 
 %   INPUT: 
 %   model_composite:    consistent generic multi population model 
 %   input_data:         struct with two fields, in this function the
 %                       input_data field is used, which entails one table
-%                       for each cluster/cell population in the model, the
-%                       first column is are the gene names with a postfix
+%                       for each cluster/cell population in the model. The
+%                       first column entails the gene names with a postfix
 %                       depending on the cluster number and the rest of the
-%                       columns is the single cell expression data
+%                       columns are the single cell expression data
 %   Cover_range:        range of different values of coverage for which the 
 %                       set of core reaction should be defined  
 %   REI_range:          range of different values of REI for which the set 
